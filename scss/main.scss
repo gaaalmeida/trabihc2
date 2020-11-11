@@ -1,2 +1,22 @@
 // Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap-reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/input-group";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/utilities/flex";
+
+// Custom variables
+$sidebar-padding: 1.25rem;
+
+//$light-gray: #F4F5F7;
+$light-gray: #F2F2F2;
+$secondary-gray: #6B778C;
+$primary-dark: #091E42;
+
+body {
+    background-color: $light-gray;
+}
+
+// Custom
+@import "sidebar";

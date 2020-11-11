@@ -1,0 +1,57 @@
+nav.sidebar {
+    background: $white;
+    max-width: 260px;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    padding: 0 $sidebar-padding;
+
+    select#cidades {
+        background-color: $light-gray;
+        // Chevron
+        background-image: url("../node_modules/bootstrap-icons/icons/chevron-down.svg");
+        background-repeat: no-repeat;
+        background-position: calc(100% - 1.125rem) center;
+
+        margin-bottom: 1.87rem;
+        border: 0;
+        padding: 1.125rem;
+        height: auto;
+        color: $primary-dark;
+        appearance: none;
+        border-radius: .85rem;
+    }
+
+    .logo a {
+        display: flex;
+        text-decoration: none;
+        color: $black;
+        margin: 2rem 0;
+
+        img { margin-right: 1rem; }
+
+        h5 { margin: 0; }
+    }
+
+    ul.nav {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: .25rem;
+
+            a {
+                padding: .7rem $sidebar-padding;
+                display: block;
+                border-radius: .5rem;
+                color: $secondary-gray;
+                text-decoration: none;
+
+                &.active, &:hover {
+                    background-color: $light-gray !important;
+                    color: $primary-dark !important;
+                }
+            }
+        }
+    }
+}
