@@ -56,3 +56,29 @@ nav.sidebar {
         }
     }
 }
+
+@media(max-width: 1200px) {
+    nav.sidebar {
+        display: none;
+        max-width: 100vw;
+        height: auto;
+        padding: 2rem 0;
+
+        &.show { display: block; }
+
+        .logo { display: none; }
+
+        select#cidades {
+            width: 90%;
+            max-width: 350px;
+            margin: 0 auto;
+            margin-bottom: 1.87rem;
+        }
+
+        ul.nav {
+            width: 90%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+    }
+}
