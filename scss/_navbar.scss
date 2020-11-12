@@ -1,0 +1,32 @@
+nav.navbar#mobile-nav {
+    display: grid;
+    grid-template-columns: 4fr 96fr;
+    place-items: center;
+    height: 64px;
+    padding-right: calc(50px + 1rem);
+
+    button.navbar-toggler {
+        width: 50px;
+        height: 40px;
+        margin: 0 .5rem;
+        border: 0;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    a.navbar-brand {
+        text-decoration: none;
+        color: $black;
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+}
+
+@media(min-width: 1200px) {
+    nav.navbar#mobile-nav {
+        display: none;
+    }
+}
