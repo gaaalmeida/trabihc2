@@ -1,0 +1,52 @@
+section#section-perfil,
+section#section-candidatos {
+    margin: 2rem 0;
+    h3 {
+        margin: 0;
+    }
+}
+
+#profileTab {
+    width: 100%;
+}
+
+#profileTabContent .tab-pane.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#projetos, #masacoes, #boasacoes {
+    max-height: 77vh;
+    overflow-y: auto;
+    box-sizing: none;
+    white-space: wrap;
+    text-overflow: ellipsis;
+}
+
+.card {
+    background-color: $gray-200;
+
+    &.d-flex {
+        .card-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-bottom: none;
+            border-right: 1px solid rgba(0, 0, 0, 0.125);
+
+            span.pontos {
+                font-size: 1.125rem;
+                font-weight: 500;
+            }
+            text-transform: uppercase;
+            font-size: .9rem;
+        }
+    }
+    &:first-child {
+        margin-top: 1rem;
+    }
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}

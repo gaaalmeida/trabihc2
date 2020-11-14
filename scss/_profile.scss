@@ -1,0 +1,84 @@
+.profile {
+    background-color: $white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: .25rem;
+    z-index: 3;
+    .close {
+        display: none;
+        width: 100%;
+        justify-content: flex-end;
+        button {
+            border: none;
+            background-color: transparent;
+        }
+    }
+    img {
+        max-width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+    ul.list-group.list-group-flush.profile-list li {
+        display: flex;
+        justify-content: space-between;
+        span.n {
+            font-weight: 500;
+        }
+        span.g {
+            text-align: right;
+        }
+    }
+    .partidos {
+        padding: 1.125rem;
+        .badge.badge-pill {
+            &.active {
+                color: $black;
+                background-color: $gray-300;
+            }
+            color: $gray-700;
+            padding: .75rem;
+            margin-bottom: .5rem;
+        }
+    }
+    .botoes {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        padding: 1rem 1.75rem;
+    }
+}
+
+.black {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 3;
+}
+
+@media (min-width: 991px) {
+    .black {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .profile {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100%-64px);
+        .close {
+            display: flex;
+        }
+    }
+    .col.ns {
+        flex-basis: unset;
+        overflow-y: scroll;
+    }
+}

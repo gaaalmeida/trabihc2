@@ -8,51 +8,48 @@ ul.list-group.ranking {
         display: flex;
         justify-content: center;
         align-items: center;
-
-        &:hover { background-color: $gray-100; }
+        &:hover {
+            background-color: $gray-100;
+        }
     }
-
-    li{
+    li {
         display: grid;
         grid-template-columns: 95fr 5fr;
         align-items: center;
         padding: 0;
         max-height: 64px;
-
-        &:hover:not(.active) { background-color: $gray-100; }
-
+        &:hover:not(.active) {
+            background-color: $gray-100;
+        }
         .first-part {
             display: grid;
             grid-template-columns: 5fr 95fr;
-
             .pos {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 padding: 0 .5rem;
-
                 span.num {
                     font-size: 1.25rem;
                 }
-
                 span {
                     font-size: .8rem;
                     text-transform: uppercase;
                 }
             }
-
             .about {
                 display: flex;
                 img {
                     max-width: 54px;
+                    height: 54px;
                     border-radius: 50%;
                     margin-right: 1rem;
                 }
-
                 .np {
-                    h6 { margin: 0; }
-
+                    h6 {
+                        margin: 0;
+                    }
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -60,7 +57,6 @@ ul.list-group.ranking {
                 }
             }
         }
-
         .second-part {
             width: 100%;
             min-height: 64px;
@@ -68,18 +64,20 @@ ul.list-group.ranking {
             justify-content: center;
             flex-direction: row;
             align-items: center;
-
             .pts {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: flex-end;
-
                 span.score {
                     font-weight: 700;
                 }
             }
-
+            &:not(.chevron) {
+                .pts {
+                    margin-right: 1.5rem;
+                }
+            }
             .chevron {
                 display: flex;
                 justify-content: center;
@@ -89,6 +87,11 @@ ul.list-group.ranking {
                 padding: 1rem;
                 margin: 0 auto;
                 cursor: pointer;
+                button {
+                    background-color: transparent;
+                    border: none;
+                    width: 1.25rem;
+                }
             }
         }
     }
