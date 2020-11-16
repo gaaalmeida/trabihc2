@@ -1,84 +1,198 @@
+dl.row {
+  transition: all ease .2s;
+}
+
+#profile {
+  z-index: 2;
+}
 .profile {
-    background-color: $white;
-    padding: 1rem;
+  background: $light-gray;
+  padding: 2.75rem 1rem 1rem 1rem;
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid darken($light-gray, 10%);
+
+
+  &:not(.dt) {
+    .tab-control-container .tab-control button span.badge{
+      &.badge-green {
+        color: #16693E;
+        background-color: #B3FFD6;
+      }
+      &.badge-red {
+        color: #DE5454;
+        background-color: #FFD6D6;
+      }
+    }
+  }
+
+  &.dt {
+    border: 1px solid #1D1E20;
+    background: var(--aux-dt);
+
+    .tab-control-container .tab-control {
+      background: var(--aux2-dt);
+      border: 1px solid #1C1D1F;
+
+      button {
+        color: var(--fc-dt);
+        &.active {
+          background-color: var(--aux3-dt);
+          border-top: 1px solid #343637;
+          box-shadow: 2px 3px 4px 0px #111213;
+        }
+      }
+    }
+
+    .close button svg {
+      fill: $primary-dark;
+    }
+
+    .tabs .tab#sobre .nome {
+      color: $white;
+    }
+  }
+
+  .close {
+    display: none;
+  }
+
+  .tab-control-container {
+    position: absolute;
+    top: -1.4rem;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
-    border-radius: .25rem;
-    z-index: 3;
-    .close {
-        display: none;
-        width: 100%;
-        justify-content: flex-end;
-        button {
-            border: none;
-            background-color: transparent;
+
+    .tab-control {
+      background: $light-gray;
+      border: 1px solid darken($light-gray, 10%);
+      position: absolute;
+      display: flex;
+      width: fit-content;
+      padding: .4rem .6rem;
+      border-radius: 6px;
+      button {
+        font-size: .875rem;
+        color: var(--fc-wt);
+        border-radius: 8px;
+        margin-right: 3px;
+        &:last-child { margin-right: 0; }
+
+        &.active {
+          background-color: $white;
+          border-top: 1px solid white;
+          box-shadow: 0 0 0 1px rgba(0,0,0,.1);
         }
+      }
     }
-    img {
-        max-width: 150px;
-        height: 150px;
+  }
+}
+
+.tabs {
+  .tab {
+    display: none;
+    &.showhide {
+      display: block !important;
+    }
+
+    dl.row {
+      max-width: 90%;
+      margin: 0 auto;
+      margin-top: 1rem;
+      dd { text-align: right; }
+    }
+
+    &.sobre {
+      img {
+        max-width: 152px;
+        max-height: 152px;
+        height: 152px;
+        width: 152px;
         border-radius: 50%;
-    }
-    ul.list-group.list-group-flush.profile-list li {
+        border: 2px solid rgba($white, .2);
+      }
+      .nome {
+        margin-top: 1rem;
+        color: $primary-dark;
         display: flex;
-        justify-content: space-between;
-        span.n {
-            font-weight: 500;
+
+        .badge {
+          margin-left: .5rem;
+          color: $white;
         }
-        span.g {
-            text-align: right;
-        }
+      }
     }
-    .partidos {
-        padding: 1.125rem;
-        .badge.badge-pill {
-            &.active {
-                color: $black;
-                background-color: $gray-300;
-            }
-            color: $gray-700;
-            padding: .75rem;
-            margin-bottom: .5rem;
-        }
-    }
-    .botoes {
-        display: flex;
-        width: 100%;
-        justify-content: space-around;
-        padding: 1rem 1.75rem;
-    }
+  }
 }
 
-.black {
-    display: block;
+@media (max-width: 992px) {
+  #col-5 {
+    flex: 1 !important;
+    max-width: 100% !important;
+  }
+
+  .col.showhide {
+    display: none;
+  }
+  .profile {
     position: fixed;
+    left: 0;
     width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, .3);
-    z-index: 3;
-}
+    height: 100%;
+    top: 0;
+    border-radius: 0;
+    padding: 10rem 1rem 1rem 1rem;
 
-@media (min-width: 991px) {
-    .black {
-        display: none;
+    &.dt .close button svg{
+      fill: $white;
     }
-}
 
-@media (max-width: 991px) {
-    .profile {
-        position: fixed;
-        bottom: 0;
-        left: 0;
+    .close {
+      display: flex;
+      position: absolute;
+      top: 5rem;
+      right: 2rem;
+      width: 64px;
+      height: 64px;
+
+      button {
         width: 100%;
-        height: calc(100%-64px);
-        .close {
-            display: flex;
+        height: 100%;
+        background: transparent;
+        border: none;
+
+        svg {
+          fill: $primary-dark;
         }
+      }
     }
-    .col.ns {
-        flex-basis: unset;
-        overflow-y: scroll;
+
+    &.showhide {
+      display: none;
     }
+
+    .tabs {
+      margin-top: 4rem;
+
+      .tab dl.row {
+        max-width: 75%;
+      }
+    }
+
+    .tab-control-container {
+      position: relative;
+      top: 0;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .profile .tabs .tab dl.row{
+    max-width: 100%;
+  }
 }

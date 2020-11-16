@@ -1,0 +1,74 @@
+#tab-control-politicos {
+  display: flex;
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+
+  &:not(.dt) {
+    button.active {
+      &#bons {
+        border-color: rgba(#24B869, .2);
+      }
+      &#ruins {
+        border-color: rgba(#DE5454, .2);
+      }
+    }
+  }
+
+  &.dt {
+    button {
+      background: var(--aux2-dt);
+      color: var(--fc-dt);
+
+      &:not(.active) {
+        background: var(--aux2-dt);
+        border-color: var(--aux3-dt);
+      }
+
+      &.active {
+        &#bons {
+          background-color: #122119;
+          color: #24B869;
+          border-color: #24B869;
+        }
+        &#ruins {
+          background-color: #211212;
+          color: #DE5454;
+          border-color: #DE5454;
+        }
+      }
+    }
+  }
+
+  button {
+    flex: 1;
+    border-radius: 0;
+    border-bottom: none;
+    border-color: #e1e1e1;
+
+    &.active {
+      &#bons {
+        background-color: #D9FFEB;
+        color: #24B869;
+        border-color: #24B869;
+      }
+      &#ruins {
+        background-color: #FFD6D6;
+        color: #DE5454;
+        border-color: #DE5454;
+      }
+    }
+
+    &:first-child {
+      border-radius: 6px 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 6px 0 0;
+    }
+
+    &:not(.active) {
+      background-color: $light-gray;
+      color: #6D7274;
+    }
+
+  }
+}

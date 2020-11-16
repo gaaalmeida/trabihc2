@@ -1,0 +1,14 @@
+:root {
+  --fc-wt: #212529;
+  --fc-dt: #D0D1D3;
+  --bg-wt: white;
+  --bg-dt: #0F0F10;
+  --aux-dt: #141516;
+  --aux2-dt: #121314;
+  --aux3-dt: #232527;
+}
+
+#body.dt {
+  color: var(--fc-dt) !important;
+  background-color: var(--bg-dt) !important;
+}

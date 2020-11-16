@@ -1,0 +1,23 @@
+.badge.rounded {
+  display: inline-flex;
+  border-radius: 1rem;
+  text-align: center;
+  padding: .25rem .5rem;
+  padding-top: .3rem;
+}
+
+.badge.big {
+  padding: .5rem;
+}
+
+.badge.badge-green {
+  background-color: #122119;
+  color: #24B869;
+  border: 1px solid rgba(#24B869, .3);
+}
+
+.badge.badge-red {
+  background-color: #211212;
+  color: #DE5454;
+  border: 1px solid rgba(#DE5454, .3);
+}

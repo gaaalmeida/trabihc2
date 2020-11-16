@@ -1,60 +1,133 @@
 class Toggle {
-    constructor(id, caller, classT) {
-        this.tag = document.querySelector(`#${id}`);
-        this.classT = classT;
-        this.caller = document.querySelector(`#${caller}`);
-        this.init();
-    }
+  constructor(id, classT) {
+    this.tag = document.querySelector(`#${id}`);
+    this.classT = classT;
+    this.caller = document.querySelectorAll(`[close-btn]`);
+    this.active = false;
+    this.init();
+  }
 
-    toggleClass() {
-        this.tag.classList.toggle(`${this.classT}`);
-    }
+  toggleClass() {
+    this.tag.classList.toggle(`${this.classT}`);
+  }
 
-    init() {
-        this.toggleClass = this.toggleClass.bind(this);
-        this.caller.addEventListener('click', this.toggleClass);
+  init() {
+    for( let i = 0; i < this.caller.length; i++ ) {
+      this.caller[i].addEventListener('click', this.toggleClass.bind(this));
     }
+  }
 }
 
+class trocaTema {
+  constructor (darkClass, toggle) {
+    this.arr = [];
+    this.toggle = document.getElementById(toggle);
+    this.darkClass = darkClass;
 
-// * Mobile navbar toggle
-new Toggle("sidebar", "navbar-toggler", "show");
+    this.geraArr();
+    this.init();
+  }
 
-//Candidatos
-new Toggle("profilediv", "candidato-1-m", "d-none");
-new Toggle("black", "candidato-1-m", "d-none");
-new Toggle("profilediv", "candidato-1-m-c", "d-none");
-new Toggle("black", "candidato-1-m-c", "d-none");
+  geraArr() {
+    this.arr = document.querySelectorAll("[dark-var]");
+  }
 
+  troca() {
+    this.arr.forEach(e => {
+      e.classList.toggle(this.darkClass);
+    });
+  }
 
-new Toggle("profilediv", "black", "d-none");
-new Toggle("black", "black", "d-none");
-
-// Melhores/Piores prefeitos
-const melhoresPrefeitos = () => {
-    const melhores = document.querySelector("#ranking-melhores-prefeitos");
-    const piores = document.querySelector("#ranking-piores-prefeitos");
-    const mB = document.querySelector("#melhoresPrefeitos");
-    const pB = document.querySelector("#pioresPrefeitos");
-
-    mB.classList.add("btn-primary");
-    pB.classList.remove("btn-primary");
-    melhores.classList.remove("d-none");
-    piores.classList.add("d-none");
-}
-const pioresPrefeitos = () => {
-    const melhores = document.querySelector("#ranking-melhores-prefeitos");
-    const piores = document.querySelector("#ranking-piores-prefeitos");
-    const mB = document.querySelector("#melhoresPrefeitos");
-    const pB = document.querySelector("#pioresPrefeitos");
-
-    pB.classList.add("btn-primary");
-    mB.classList.remove("btn-primary");
-    melhores.classList.add("d-none");
-    piores.classList.remove("d-none");
+  init() {
+    this.toggle.addEventListener('click', this.troca.bind(this));
+  }
 }
 
-$('#profiletab a').on('click', function (e) {
-    e.preventDefault();
-    $(this).tab('show');
-})
+class profileChange {
+  constructor () {
+    this.rankingId = document.querySelectorAll("a[profile-id]");
+    this.profiles  = document.querySelectorAll("[profile]");
+    this.col       = document.querySelector("#profile");
+    this.init();
+  }
+
+  showProfile(e) {
+    this.profiles.forEach(profile => {
+      // Remove o atributo 'active' de todas as tags diferentes da que o usuario clicou.
+      if(profile.getAttribute("id") != e.path[1].getAttribute("profile-id") && profile.hasAttribute("active")) {
+        profile.removeAttribute("active");
+        profile.classList.add("d-none");
+      }
+    });
+    this.profiles.forEach(profile => {
+      // Verifica se o perfil que o usuario clicou não está ativo, se nao estiver, ele ativa
+      if(profile.getAttribute("id") == e.path[1].getAttribute("profile-id") && !profile.hasAttribute("active")) {
+        if(profile.classList.contains("d-none")){
+          profile.setAttribute('active', '');
+          profile.classList.remove("d-none");
+
+          // breakpoint para dispositivos moveis, impede que o 'display: none' seja ativado quando esteja no desktop
+          if(window.innerWidth < 992) {
+            this.col.classList.toggle("showhide");
+          }
+        }
+      } else if (window.innerWidth < 992 && profile.getAttribute("id") == e.path[1].getAttribute("profile-id") && profile.hasAttribute("active")) {
+        this.col.classList.toggle("showhide");
+      }
+    });
+  }
+
+  init() {
+    for( let i = 0; i < this.rankingId.length; i++ ) {
+      this.rankingId[i].addEventListener('click', this.showProfile.bind(this));
+    }
+  }
+}
+
+class Tabs {
+  constructor(tabControl, tabs) {
+    this.tabControl = document.querySelectorAll(`#${tabControl} > button[tab]`);
+    this.tabs = document.querySelectorAll(`#${tabs} > .tab`);
+    this.init();
+  }
+
+  callerToTab(e) {
+    this.changeAll(e.srcElement);
+  }
+
+  changeAll(caller) {
+    // muda o controlador
+    this.tabControl.forEach(e => {
+      e.classList.remove("active");
+    });
+    caller.classList.add("active");
+
+    // muda as abas
+    this.tabs.forEach(e => {
+      e.classList.remove("showhide");
+      if (e.getAttribute("id") == caller.getAttribute("tab")) {
+        e.classList.add("showhide");
+      }
+    });
+  }
+
+  init() {
+    for( let i = 0; i < this.tabControl.length; i++ )
+    {
+      this.tabControl[i].addEventListener('click', this.callerToTab.bind(this));
+    }
+  }
+}
+
+// Botão de fechar nos perfis
+new Toggle("profile", "showhide");
+
+// Tema escuro/claro
+new trocaTema("dt", "theme-toggle");
+
+// Abas dos politicos
+new Tabs("tab-control", "tabs");
+new Tabs("tab-control-politicos", "tabs-politicos");
+
+// Faz a troca dos perfis
+new profileChange();
