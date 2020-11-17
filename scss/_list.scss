@@ -1,9 +1,11 @@
 .tab#bons ul.list-group.ranking.dt li{
-  border-color: #24B869;
+  border-color: #11c15c;
   border-bottom-color: var(--aux3-dt);
 
   &:hover {
     background-color:  #122119;
+
+    a, span:not(.badge) { color: #11c15c; }
   }
 
   &:last-child {
@@ -12,15 +14,17 @@
 }
 
 .tab#ruins ul.list-group.ranking.dt li{
-  border-color: #DE5454;
+  border-color: #e98b8b;
   border-bottom-color: var(--aux3-dt);
 
   &:hover {
     background-color: #211212;
+
+    a, span:not(.badge) { color: #e98b8b; }
   }
 
   &:last-child {
-    border-bottom-color: #DE5454;
+    border-bottom-color: #e98b8b;
   }
 }
 
@@ -42,10 +46,19 @@ ul.list-group.ranking {
 
   &.dt {
     li {
-      background-color: var(--aux2-dt);
-      border-color: var(--aux3-dt);
+      background-color: var(--aux-dt);
+      border-color: var(--aux2-dt);
       a {
         color: var(--fc-dt);
+
+        .second-part .pts span.badge-green {
+          color: #11c15c;
+          border-color: #11c15c;
+        }
+        .second-part .pts span.badge-red {
+          color: #e98b8b;
+          border-color: #e98b8b;
+        }
 
         .first-part .about .np span:not(.badge) {
           color: #868C8D;
@@ -89,7 +102,7 @@ ul.list-group.ranking {
           width: 54px;
           height: 54px;
           border-radius: 50%;
-          border: 2px solid var(--aux3-dt);
+          border: 2px solid rgba($white, .6);
         }
 
         .about {

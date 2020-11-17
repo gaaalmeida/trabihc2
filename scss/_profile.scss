@@ -6,7 +6,7 @@ dl.row {
   z-index: 2;
 }
 .profile {
-  background: $light-gray;
+  background: var(--aux-wt);
   padding: 2.75rem 1rem 1rem 1rem;
   position: relative;
   border-radius: 6px;
@@ -27,19 +27,20 @@ dl.row {
   }
 
   &.dt {
-    border: 1px solid #1D1E20;
+    border: 1px solid rgba($white, .3);
     background: var(--aux-dt);
 
     .tab-control-container .tab-control {
-      background: var(--aux2-dt);
-      border: 1px solid #1C1D1F;
+      background: var(--aux-dt);
+      border: 1px solid rgba($white, .3);
 
       button {
         color: var(--fc-dt);
         &.active {
-          background-color: var(--aux3-dt);
+          color: var(--fc-wt);
+          background-color: #acacac;
           border-top: 1px solid #343637;
-          box-shadow: 2px 3px 4px 0px #111213;
+          box-shadow: 0 0 4px 0px rgba(#111213, .7);
         }
       }
     }
@@ -76,8 +77,10 @@ dl.row {
       width: fit-content;
       padding: .4rem .6rem;
       border-radius: 6px;
+
       button {
-        font-size: .875rem;
+        font-size: 1rem;
+        font-weight: 500;
         color: var(--fc-wt);
         border-radius: 8px;
         margin-right: 3px;
@@ -114,7 +117,7 @@ dl.row {
         height: 152px;
         width: 152px;
         border-radius: 50%;
-        border: 2px solid rgba($white, .2);
+        border: 2px solid rgba($white, .8);
       }
       .nome {
         margin-top: 1rem;

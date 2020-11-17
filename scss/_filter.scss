@@ -1,0 +1,32 @@
+.filter {
+  &.dt {
+    form .row .col select {
+      background-color: var(--aux-dt);
+      background-image: url('../img/chevron-down-white.svg');
+    }
+  }
+
+  &:not(.dt ) {
+    form .row .col select {
+      background-color: var(--aux-wt);
+      color: var(--fc-wt);
+      border-color: var(--border-wt);
+      background-image: url('../img/chevron-down.svg');
+    }
+  }
+
+  form .row .col{
+    select {
+
+      color: $white;
+      border-color: rgba($white, .5);
+      padding: 1rem;
+      font-weight: 500;
+      height: auto;
+      appearance: none;
+
+      background-repeat: no-repeat;
+      background-position: 92% center;
+    }
+  }
+}

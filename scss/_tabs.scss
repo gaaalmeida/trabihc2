@@ -6,10 +6,10 @@
   &:not(.dt) {
     button.active {
       &#bons {
-        border-color: rgba(#24B869, .2);
+        border-color: rgba(#11c15c, .2);
       }
       &#ruins {
-        border-color: rgba(#DE5454, .2);
+        border-color: rgba(#e98b8b, .2);
       }
     }
   }
@@ -17,23 +17,24 @@
   &.dt {
     button {
       background: var(--aux2-dt);
-      color: var(--fc-dt);
+      color: #babdbe;
 
       &:not(.active) {
+        color: #babdbe;
         background: var(--aux2-dt);
-        border-color: var(--aux3-dt);
+        border-color: #babdbe;
       }
 
       &.active {
         &#bons {
           background-color: #122119;
-          color: #24B869;
-          border-color: #24B869;
+          color: #11c15c;
+          border-color: #11c15c;
         }
         &#ruins {
           background-color: #211212;
-          color: #DE5454;
-          border-color: #DE5454;
+          color: #e98b8b;
+          border-color: #e98b8b;
         }
       }
     }
@@ -47,14 +48,14 @@
 
     &.active {
       &#bons {
-        background-color: #D9FFEB;
-        color: #24B869;
-        border-color: #24B869;
+        background-color: #bfffdd;
+        color: #085a2b;
+        border-color: #085a2b;
       }
       &#ruins {
-        background-color: #FFD6D6;
-        color: #DE5454;
-        border-color: #DE5454;
+        background-color: #ffe4e4;
+        color: #961c1c;
+        border-color: #961c1c;
       }
     }
 

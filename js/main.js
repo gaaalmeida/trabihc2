@@ -131,3 +131,7 @@ new Tabs("tab-control-politicos", "tabs-politicos");
 
 // Faz a troca dos perfis
 new profileChange();
+
+$('#theme-toggle').popover({
+  trigger: 'hover'
+})

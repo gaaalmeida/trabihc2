@@ -10,327 +10,322 @@
 </head>
 
 <body class="dt" id="body" dark-var>
-  <nav class="navbar fixed-top justify-content-between dt" dark-var>
-    <div class="container" id="nav-container">
-      <a class="navbar-brand mb-0 h5" href="#">IHC2</a>
-      <div class="menu dt" dark-var>
-        <!-- Prefeito ou Vereador -->
-        <div>
-          <div class="dropdown">
-            <label for="vereadoresouprefeitos" class="sr-only">Visualizar Prefeitos ou Vereadores</label>
-            <button class="btn" type="button" id="vereadoresouprefeitos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" level-1>
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+  <header>
+    <nav class="navbar fixed-top justify-content-between dt" dark-var>
+      <div class="container" id="nav-container">
+        <a class="navbar-brand mb-0 h5" href="index.html">IHC2</a>
+        <div class="menu dt" dark-var>
+          <div>
+            <label for="theme-toggle" class="sr-only">Trocar tema do site (claro/escuro)</label>
+            <a tabindex="0" class="btn" role="button" id="theme-toggle" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="Trocar o tema" data-content="Clique para alterar o tema do site entre claro e escuro." level-1>
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sun" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.5 8a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0z"/>
+                <path fill-rule="evenodd" d="M8.202.28a.25.25 0 0 0-.404 0l-.91 1.255a.25.25 0 0 1-.334.067L5.232.79a.25.25 0 0 0-.374.155l-.36 1.508a.25.25 0 0 1-.282.19l-1.532-.245a.25.25 0 0 0-.286.286l.244 1.532a.25.25 0 0 1-.189.282l-1.509.36a.25.25 0 0 0-.154.374l.812 1.322a.25.25 0 0 1-.067.333l-1.256.91a.25.25 0 0 0 0 .405l1.256.91a.25.25 0 0 1 .067.334L.79 10.768a.25.25 0 0 0 .154.374l1.51.36a.25.25 0 0 1 .188.282l-.244 1.532a.25.25 0 0 0 .286.286l1.532-.244a.25.25 0 0 1 .282.189l.36 1.508a.25.25 0 0 0 .374.155l1.322-.812a.25.25 0 0 1 .333.067l.91 1.256a.25.25 0 0 0 .405 0l.91-1.256a.25.25 0 0 1 .334-.067l1.322.812a.25.25 0 0 0 .374-.155l.36-1.508a.25.25 0 0 1 .282-.19l1.532.245a.25.25 0 0 0 .286-.286l-.244-1.532a.25.25 0 0 1 .189-.282l1.508-.36a.25.25 0 0 0 .155-.374l-.812-1.322a.25.25 0 0 1 .067-.333l1.256-.91a.25.25 0 0 0 0-.405l-1.256-.91a.25.25 0 0 1-.067-.334l.812-1.322a.25.25 0 0 0-.155-.374l-1.508-.36a.25.25 0 0 1-.19-.282l.245-1.532a.25.25 0 0 0-.286-.286l-1.532.244a.25.25 0 0 1-.282-.189l-.36-1.508a.25.25 0 0 0-.374-.155l-1.322.812a.25.25 0 0 1-.333-.067L8.203.28zM8 2.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/>
               </svg>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="vereadoresouprefeitos">
-              <button class="dropdown-item" type="button">Prefeitos</button>
-              <button class="dropdown-item" type="button">Vereadores</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section>
+    <div class="container-lg" id="main-container">
+      <div class="row">
+        <div class="col-5" id="col-5">
+          <!-- Pesquisa -->
+          <div class="input-group mb-4 dt" id="pesquisa" dark-var>
+            <label for="areaPesquisa" class="sr-only">Pesquisar candidato</label>
+            <input type="text" id="areaPesquisa" class="form-control" placeholder="Pesquisar candidato" aria-label="Pesquisar candidato" aria-describedby="pesquisarCandidato">
+            <div class="input-group-append">
+              <button class="btn" type="button" id="pesquisarCandidato">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Fim Pesquisa -->
+          <!-- Filtro -->
+          <div class="filter dt" dark-var>
+            <form>
+              <div class="row">
+                <div class="col">
+                  <label for="cidades">Cidade:</label>
+                  <select class="form-control" id="cidades">
+                    <option>Bertioga</option>
+                    <option>Cubatão</option>
+                    <option>Guarujá</option>
+                    <option>Itanhaém</option>
+                    <option>Mongaguá</option>
+                    <option>Peruíbe</option>
+                    <option>Praia Grande</option>
+                    <option>Santos</option>
+                    <option>São Vicente</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="cargos">Escolha o cargo:</label>
+                  <select class="form-control" id="cargos">
+                    <option>Prefeito</option>
+                    <option>Vereador</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <h5 class="mt-3">Exibindo resultados para Santos</h5>
+          </div>
+          <!-- Fim do Filtro -->
+          <div class="mt-2 dt" id="tab-control-politicos" dark-var>
+            <button id="bons" type="button" tab="bons" class="btn active">Melhores Avaliados</button>
+            <button id="ruins" type="button" tab="ruins" class="btn">Piores Avaliados</button>
+          </div>
+          <div class="tabs" id="tabs-politicos">
+            <div class="tab showhide" id="bons">
+              <ul class="list-group ranking dt" id="listbons" dark-var>
+                <li class="list-group-item">
+                  <a id="joscreildo" href="#" profile-id="1candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">1</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <h6>Joscreildo</h6>
+                          <span>P1 <span class="badge badge-primary">00000</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-green big"><h6 class="score">93</h6>pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" profile-id="2candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">2</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <h6>Vota neu ai</h6>
+                          <span>LLLL <span class="badge badge-primary">8777</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-green big"><h6 class="score">93</h6>pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab" id="ruins">
+              <ul class="list-group ranking dt" id="listruins" dark-var>
+                <li class="list-group-item">
+                  <a href="#">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">1</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <h6>Mano</h6>
+                          <span>MMM <span class="badge badge-primary">88888</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-red big"><h6 class="score">3</h6>pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">2</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <h6>Bagulho</h6>
+                          <span>PLANISTAS <span class="badge badge-primary">2121</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-red big"><h6 class="score">5</h6>pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-        <div>
-        <!-- Fim Prefeito ou Vereador -->
-        <!-- Cidades -->
-          <div class="dropdown">
-            <label for="cidades" class="sr-only">Escolha sua cidade</label>
-            <button class="btn" type="button" id="cidades" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" level-1>
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-              </svg>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="cidades">
-              <button class="dropdown-item" type="button">Bertioga</button>
-              <button class="dropdown-item" type="button">Cubatão</button>
-              <button class="dropdown-item" type="button">Guarujá</button>
-              <button class="dropdown-item" type="button">Itanhaém</button>
-              <button class="dropdown-item" type="button">Mongaguá</button>
-              <button class="dropdown-item" type="button">Peruíbe</button>
-              <button class="dropdown-item" type="button">Praia Grande</button>
-              <button class="dropdown-item" type="button">Santos</button>
-              <button class="dropdown-item" type="button">São Vicente</button>
+        <div class="col showhide" id="profile">
+          <div class="profile dt" id="1candidato" active profile dark-var>
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
             </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-green rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Joscreildo">
+                  <h4 class="nome">Joscreildo <span class="badge bg-primary">P1</span></h4>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab" id="projetos">
+                <h4>Projetos</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              </div>
+              <div class="tab" id="boasacoes">
+                <h4>Boas Acoes</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              </div>
+              <div class="tab" id="masacoes">
+                <h4>Boas Acoes</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              </div>
+            </div>
+            <!-- Fim das abas -->
           </div>
-        </div>
-        <!-- Fim Cidades -->
-        <div>
-          <label for="theme-toggle" class="sr-only">Trocar tema do site (claro/escuro)</label>
-          <button level-1 type="button" class="btn" aria-expanded="false" id="theme-toggle">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sun" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.5 8a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0z"/>
-              <path fill-rule="evenodd" d="M8.202.28a.25.25 0 0 0-.404 0l-.91 1.255a.25.25 0 0 1-.334.067L5.232.79a.25.25 0 0 0-.374.155l-.36 1.508a.25.25 0 0 1-.282.19l-1.532-.245a.25.25 0 0 0-.286.286l.244 1.532a.25.25 0 0 1-.189.282l-1.509.36a.25.25 0 0 0-.154.374l.812 1.322a.25.25 0 0 1-.067.333l-1.256.91a.25.25 0 0 0 0 .405l1.256.91a.25.25 0 0 1 .067.334L.79 10.768a.25.25 0 0 0 .154.374l1.51.36a.25.25 0 0 1 .188.282l-.244 1.532a.25.25 0 0 0 .286.286l1.532-.244a.25.25 0 0 1 .282.189l.36 1.508a.25.25 0 0 0 .374.155l1.322-.812a.25.25 0 0 1 .333.067l.91 1.256a.25.25 0 0 0 .405 0l.91-1.256a.25.25 0 0 1 .334-.067l1.322.812a.25.25 0 0 0 .374-.155l.36-1.508a.25.25 0 0 1 .282-.19l1.532.245a.25.25 0 0 0 .286-.286l-.244-1.532a.25.25 0 0 1 .189-.282l1.508-.36a.25.25 0 0 0 .155-.374l-.812-1.322a.25.25 0 0 1 .067-.333l1.256-.91a.25.25 0 0 0 0-.405l-1.256-.91a.25.25 0 0 1-.067-.334l.812-1.322a.25.25 0 0 0-.155-.374l-1.508-.36a.25.25 0 0 1-.19-.282l.245-1.532a.25.25 0 0 0-.286-.286l-1.532.244a.25.25 0 0 1-.282-.189l-.36-1.508a.25.25 0 0 0-.374-.155l-1.322.812a.25.25 0 0 1-.333-.067L8.203.28zM8 2.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/>
-            </svg>
-          </button>
+          <div class="profile dt d-none" id="2candidato" profile dark-var>
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-green rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Joscreildo">
+                  <h4 class="nome">Vota neu ai <span class="badge bg-primary">P1</span></h4>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab" id="projetos">
+                <h4>Projetos</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              </div>
+              <div class="tab" id="boasacoes">
+                <h4>Boas Acoes</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              </div>
+              <div class="tab" id="masacoes">
+                <h4>Boas Acoes</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
         </div>
       </div>
     </div>
-  </nav>
-  <div class="container-lg" id="main-container">
-    <div class="row">
-      <div class="col-5" id="col-5">
-        <!-- Pesquisa -->
-        <div class="input-group mb-4 dt" id="pesquisa" dark-var>
-          <label for="areaPesquisa" class="sr-only">Pesquisar candidato</label>
-          <input type="text" id="areaPesquisa" class="form-control" placeholder="Pesquisar candidato" aria-label="Pesquisar candidato" aria-describedby="pesquisarCandidato">
-          <div class="input-group-append">
-            <button class="btn" type="button" id="pesquisarCandidato">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <!-- Fim Pesquisa -->
-        <div class="dt" id="tab-control-politicos" dark-var>
-          <button id="bons" type="button" tab="bons" class="btn active">Melhores Avaliados</button>
-          <button id="ruins" type="button" tab="ruins" class="btn">Piores Avaliados</button>
-        </div>
-        <div class="tabs" id="tabs-politicos">
-          <div class="tab showhide" id="bons">
-            <ul class="list-group ranking dt" id="listbons" dark-var>
-              <li class="list-group-item">
-                <a id="joscreildo" href="#" profile-id="1candidato">
-                  <div class="first-part">
-                    <div class="pos">
-                      <span class="num">1</span>
-                      <span>pos.</span>
-                    </div>
-                    <div class="about">
-                      <img src="img/user.png" alt="Nome do Candidato">
-                      <div class="np">
-                        <h6>Joscreildo</h6>
-                        <span>P1 <span class="badge badge-primary">00000</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="second-part">
-                    <div class="pts">
-                      <span class="badge badge-green big"><h6 class="score">93</h6>pontos</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#" profile-id="2candidato">
-                  <div class="first-part">
-                    <div class="pos">
-                      <span class="num">2</span>
-                      <span>pos.</span>
-                    </div>
-                    <div class="about">
-                      <img src="img/user.png" alt="Nome do Candidato">
-                      <div class="np">
-                        <h6>Vota neu ai</h6>
-                        <span>LLLL <span class="badge badge-primary">8777</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="second-part">
-                    <div class="pts">
-                      <span class="badge badge-green big"><h6 class="score">93</h6>pontos</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="tab" id="ruins">
-            <ul class="list-group ranking dt" id="listruins" dark-var>
-              <li class="list-group-item">
-                <a href="#">
-                  <div class="first-part">
-                    <div class="pos">
-                      <span class="num">1</span>
-                      <span>pos.</span>
-                    </div>
-                    <div class="about">
-                      <img src="img/user.png" alt="Nome do Candidato">
-                      <div class="np">
-                        <h6>Mano</h6>
-                        <span>MMM <span class="badge badge-primary">88888</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="second-part">
-                    <div class="pts">
-                      <span class="badge badge-red big"><h6 class="score">3</h6>pontos</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  <div class="first-part">
-                    <div class="pos">
-                      <span class="num">2</span>
-                      <span>pos.</span>
-                    </div>
-                    <div class="about">
-                      <img src="img/user.png" alt="Nome do Candidato">
-                      <div class="np">
-                        <h6>Bagulho</h6>
-                        <span>PLANISTAS <span class="badge badge-primary">2121</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="second-part">
-                    <div class="pts">
-                      <span class="badge badge-red big"><h6 class="score">5</h6>pontos</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col showhide" id="profile">
-        <div class="profile dt" id="1candidato" active profile dark-var>
-          <div class="close">
-            <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
-            <button type="button" id="closeprofile" close-btn>
-              <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
-            </button>
-          </div>
-          <!-- Inicio do controle -->
-          <div class="tab-control-container">
-            <div class="tab-control" id="tab-control">
-              <button type="button" tab="sobre" class="btn active">Sobre</button>
-              <button type="button" tab="projetos" class="btn">Projetos</button>
-              <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-green rounded">6</span></button>
-              <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
-            </div>
-          </div>
-          <!-- Fim do controle -->
-          <!-- Inicio das abas -->
-          <div class="tabs" id="tabs">
-            <div class="tab sobre showhide" id="sobre">
-              <div class="center d-flex align-items-center flex-column">
-                <img src="img/user.png" alt="Joscreildo">
-                <h4 class="nome">Joscreildo <span class="badge bg-primary">P1</span></h4>
-              </div>
-              <dl class="row">
-                <dt class="col-5">Nome</dt>
-                <dd class="col-7">
-                  <p>Nome completo do candidato</p>
-                </dd>
-
-                <dt class="col-5">Data de nascimento</dt>
-                <dd class="col-7">
-                  <p>12 de janeiro de 1900 (120 anos)</p>
-                </dd>
-
-                <dt class="col-5">Gênero</dt>
-                <dd class="col-7">
-                  <p>Masculino</p>
-                </dd>
-
-                <dt class="col-5">Estado civil</dt>
-                <dd class="col-7">
-                  <p>Casado(a)</p>
-                </dd>
-
-                <dt class="col-5">Ocupação</dt>
-                <dd class="col-7">
-                  <p>Pianista</p>
-                </dd>
-
-                <dt class="col-5">Grau de instrução</dt>
-                <dd class="col-7">
-                  <p>Superior Completo</p>
-                </dd>
-              </dl>
-            </div>
-            <div class="tab" id="projetos">
-              <h4>Projetos</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
-            </div>
-            <div class="tab" id="boasacoes">
-              <h4>Boas Acoes</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
-            </div>
-            <div class="tab" id="masacoes">
-              <h4>Boas Acoes</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
-            </div>
-          </div>
-          <!-- Fim das abas -->
-        </div>
-        <div class="profile dt d-none" id="2candidato" profile dark-var>
-          <div class="close">
-            <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
-            <button type="button" id="closeprofile" close-btn>
-              <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
-            </button>
-          </div>
-          <!-- Inicio do controle -->
-          <div class="tab-control-container">
-            <div class="tab-control" id="tab-control">
-              <button type="button" tab="sobre" class="btn active">Sobre</button>
-              <button type="button" tab="projetos" class="btn">Projetos</button>
-              <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-green rounded">6</span></button>
-              <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
-            </div>
-          </div>
-          <!-- Fim do controle -->
-          <!-- Inicio das abas -->
-          <div class="tabs" id="tabs">
-            <div class="tab sobre showhide" id="sobre">
-              <div class="center d-flex align-items-center flex-column">
-                <img src="img/user.png" alt="Joscreildo">
-                <h4 class="nome">Vota neu ai <span class="badge bg-primary">P1</span></h4>
-              </div>
-              <dl class="row">
-                <dt class="col-5">Nome</dt>
-                <dd class="col-7">
-                  <p>Nome completo do candidato</p>
-                </dd>
-
-                <dt class="col-5">Data de nascimento</dt>
-                <dd class="col-7">
-                  <p>12 de janeiro de 1900 (120 anos)</p>
-                </dd>
-
-                <dt class="col-5">Gênero</dt>
-                <dd class="col-7">
-                  <p>Masculino</p>
-                </dd>
-
-                <dt class="col-5">Estado civil</dt>
-                <dd class="col-7">
-                  <p>Casado(a)</p>
-                </dd>
-
-                <dt class="col-5">Ocupação</dt>
-                <dd class="col-7">
-                  <p>Pianista</p>
-                </dd>
-
-                <dt class="col-5">Grau de instrução</dt>
-                <dd class="col-7">
-                  <p>Superior Completo</p>
-                </dd>
-              </dl>
-            </div>
-            <div class="tab" id="projetos">
-              <h4>Projetos</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
-            </div>
-            <div class="tab" id="boasacoes">
-              <h4>Boas Acoes</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
-            </div>
-            <div class="tab" id="masacoes">
-              <h4>Boas Acoes</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
-            </div>
-          </div>
-          <!-- Fim das abas -->
-        </div>
-      </div>
-    </div>
-  </div>
+  </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   <script src="js/main.js"></script>

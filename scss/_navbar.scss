@@ -1,15 +1,16 @@
 .navbar {
   padding: 0;
-  background-color: $light-gray;
+  background-color: darken($light-gray, 2%);
   height: 64px;
-  border: 1px solid rgba($light-gray, .1);
+  border-bottom: 1px solid var(--border-wt);
 
   &.dt {
-    background-color: var(--bg-dt);
+    background-color: var(--aux-dt);
+    border-bottom: 1px solid var(--aux3-dt);
 
     .navbar-brand { color: $white; }
 
-    .menu button[level-1] {
+    .menu a.btn {
       background: var(--aux3-dt);
       color: var(--fc-dt);
     }
@@ -22,7 +23,7 @@
   .menu {
     display: flex;
 
-    button[level-1] {
+    a.btn {
       background: rgba(219, 218, 218, 0.95);
       color: #5E5E5E;
       border-radius: 10px;

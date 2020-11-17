@@ -12,17 +12,18 @@ body {
 
 .navbar {
   padding: 0;
-  background-color: #fafafa;
+  background-color: whitesmoke;
   height: 64px;
-  border: 1px solid rgba(250, 250, 250, 0.1);
+  border-bottom: 1px solid var(--border-wt);
 }
 .navbar.dt {
-  background-color: var(--bg-dt);
+  background-color: var(--aux-dt);
+  border-bottom: 1px solid var(--aux3-dt);
 }
 .navbar.dt .navbar-brand {
   color: #ffffff;
 }
-.navbar.dt .menu button[level-1] {
+.navbar.dt .menu a.btn {
   background: var(--aux3-dt);
   color: var(--fc-dt);
 }
@@ -32,37 +33,43 @@ body {
 .navbar .menu {
   display: flex;
 }
-.navbar .menu button[level-1] {
+.navbar .menu a.btn {
   background: rgba(219, 218, 218, 0.95);
   color: #5E5E5E;
   border-radius: 10px;
   height: 40px;
   margin-right: 6px;
 }
-.navbar .menu button[level-1]#theme-toggle {
+.navbar .menu a.btn#theme-toggle {
   margin-right: 0;
 }
 
 .tab#bons ul.list-group.ranking.dt li {
-  border-color: #24B869;
+  border-color: #11c15c;
   border-bottom-color: var(--aux3-dt);
 }
 .tab#bons ul.list-group.ranking.dt li:hover {
   background-color: #122119;
+}
+.tab#bons ul.list-group.ranking.dt li:hover a, .tab#bons ul.list-group.ranking.dt li:hover span:not(.badge) {
+  color: #11c15c;
 }
 .tab#bons ul.list-group.ranking.dt li:last-child {
   border-bottom-color: #24B869;
 }
 
 .tab#ruins ul.list-group.ranking.dt li {
-  border-color: #DE5454;
+  border-color: #e98b8b;
   border-bottom-color: var(--aux3-dt);
 }
 .tab#ruins ul.list-group.ranking.dt li:hover {
   background-color: #211212;
 }
+.tab#ruins ul.list-group.ranking.dt li:hover a, .tab#ruins ul.list-group.ranking.dt li:hover span:not(.badge) {
+  color: #e98b8b;
+}
 .tab#ruins ul.list-group.ranking.dt li:last-child {
-  border-bottom-color: #DE5454;
+  border-bottom-color: #e98b8b;
 }
 
 ul.list-group.ranking {
@@ -77,11 +84,19 @@ ul.list-group.ranking:not(.dt) li a .second-part .pts span.badge.badge-red {
   background-color: #FFD6D6;
 }
 ul.list-group.ranking.dt li {
-  background-color: var(--aux2-dt);
-  border-color: var(--aux3-dt);
+  background-color: var(--aux-dt);
+  border-color: var(--aux2-dt);
 }
 ul.list-group.ranking.dt li a {
   color: var(--fc-dt);
+}
+ul.list-group.ranking.dt li a .second-part .pts span.badge-green {
+  color: #11c15c;
+  border-color: #11c15c;
+}
+ul.list-group.ranking.dt li a .second-part .pts span.badge-red {
+  color: #e98b8b;
+  border-color: #e98b8b;
 }
 ul.list-group.ranking.dt li a .first-part .about .np span:not(.badge) {
   color: #868C8D;
@@ -119,7 +134,7 @@ ul.list-group.ranking li a .first-part img {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  border: 2px solid var(--aux3-dt);
+  border: 2px solid rgba(255, 255, 255, 0.6);
 }
 ul.list-group.ranking li a .first-part .about {
   display: flex;
@@ -153,7 +168,7 @@ dl.row {
 }
 
 .profile {
-  background: #fafafa;
+  background: var(--aux-wt);
   padding: 2.75rem 1rem 1rem 1rem;
   position: relative;
   border-radius: 6px;
@@ -168,20 +183,21 @@ dl.row {
   background-color: #FFD6D6;
 }
 .profile.dt {
-  border: 1px solid #1D1E20;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background: var(--aux-dt);
 }
 .profile.dt .tab-control-container .tab-control {
-  background: var(--aux2-dt);
-  border: 1px solid #1C1D1F;
+  background: var(--aux-dt);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .profile.dt .tab-control-container .tab-control button {
   color: var(--fc-dt);
 }
 .profile.dt .tab-control-container .tab-control button.active {
-  background-color: var(--aux3-dt);
+  color: var(--fc-wt);
+  background-color: #acacac;
   border-top: 1px solid #343637;
-  box-shadow: 2px 3px 4px 0px #111213;
+  box-shadow: 0 0 4px 0px rgba(17, 18, 19, 0.7);
 }
 .profile.dt .close button svg {
   fill: #191B1C;
@@ -213,7 +229,8 @@ dl.row {
   border-radius: 6px;
 }
 .profile .tab-control-container .tab-control button {
-  font-size: 0.875rem;
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--fc-wt);
   border-radius: 8px;
   margin-right: 3px;
@@ -247,7 +264,7 @@ dl.row {
   height: 152px;
   width: 152px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 .tabs .tab.sobre .nome {
   margin-top: 1rem;
@@ -318,23 +335,24 @@ dl.row {
   }
 }
 #pesquisa.dt input {
-  background: var(--aux3-dt);
+  background: var(--aux2-dt);
   border-color: rgba(250, 250, 250, 0.5);
   color: #ffffff;
 }
 #pesquisa.dt input::placeholder {
-  color: #6E6E6E;
+  color: #c4c4c4;
 }
 #pesquisa.dt .input-group-append #pesquisarCandidato {
-  background-color: var(--aux-dt);
-  color: #007bff;
-  border-color: #007bff;
+  color: #ffffff;
+  font-size: 1.5rem;
+  border-color: #66b0ff;
 }
 #pesquisa input {
   padding: 1rem 1.5rem;
   height: 64px;
   background-color: #fafafa;
   color: #191B1C;
+  border-radius: 6px 0 0 6px;
 }
 #pesquisa input::placeholder {
   color: rgba(25, 27, 28, 0.5);
@@ -362,28 +380,29 @@ dl.row {
   border-bottom: none;
 }
 #tab-control-politicos:not(.dt) button.active#bons {
-  border-color: rgba(36, 184, 105, 0.2);
+  border-color: rgba(17, 193, 92, 0.2);
 }
 #tab-control-politicos:not(.dt) button.active#ruins {
-  border-color: rgba(222, 84, 84, 0.2);
+  border-color: rgba(233, 139, 139, 0.2);
 }
 #tab-control-politicos.dt button {
   background: var(--aux2-dt);
-  color: var(--fc-dt);
+  color: #babdbe;
 }
 #tab-control-politicos.dt button:not(.active) {
+  color: #babdbe;
   background: var(--aux2-dt);
-  border-color: var(--aux3-dt);
+  border-color: #babdbe;
 }
 #tab-control-politicos.dt button.active#bons {
   background-color: #122119;
-  color: #24B869;
-  border-color: #24B869;
+  color: #11c15c;
+  border-color: #11c15c;
 }
 #tab-control-politicos.dt button.active#ruins {
   background-color: #211212;
-  color: #DE5454;
-  border-color: #DE5454;
+  color: #e98b8b;
+  border-color: #e98b8b;
 }
 #tab-control-politicos button {
   flex: 1;
@@ -392,14 +411,14 @@ dl.row {
   border-color: #e1e1e1;
 }
 #tab-control-politicos button.active#bons {
-  background-color: #D9FFEB;
-  color: #24B869;
-  border-color: #24B869;
+  background-color: #bfffdd;
+  color: #085a2b;
+  border-color: #085a2b;
 }
 #tab-control-politicos button.active#ruins {
-  background-color: #FFD6D6;
-  color: #DE5454;
-  border-color: #DE5454;
+  background-color: #ffe4e4;
+  color: #961c1c;
+  border-color: #961c1c;
 }
 #tab-control-politicos button:first-child {
   border-radius: 6px 0 0 0;
@@ -416,10 +435,12 @@ dl.row {
   --fc-wt: #212529;
   --fc-dt: #D0D1D3;
   --bg-wt: white;
-  --bg-dt: #0F0F10;
-  --aux-dt: #141516;
-  --aux2-dt: #121314;
-  --aux3-dt: #232527;
+  --bg-dt: #111111;
+  --aux-dt:#1D1D1D;
+  --aux2-dt: #2D2D2D;
+  --aux3-dt: #353535;
+  --aux-wt: #fafafa;
+  --border-wt: #e1e1e1;
 }
 
 #body.dt {
@@ -441,14 +462,35 @@ dl.row {
 
 .badge.badge-green {
   background-color: #122119;
-  color: #24B869;
-  border: 1px solid rgba(36, 184, 105, 0.3);
+  color: #11c15c;
+  border: 1px solid #11c15c;
 }
 
 .badge.badge-red {
   background-color: #211212;
-  color: #DE5454;
-  border: 1px solid rgba(222, 84, 84, 0.3);
+  color: #e98b8b;
+  border: 1px solid #e98b8b;
+}
+
+.filter.dt form .row .col select {
+  background-color: var(--aux-dt);
+  background-image: url("../img/chevron-down-white.svg");
+}
+.filter:not(.dt) form .row .col select {
+  background-color: var(--aux-wt);
+  color: var(--fc-wt);
+  border-color: var(--border-wt);
+  background-image: url("../img/chevron-down.svg");
+}
+.filter form .row .col select {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  font-weight: 500;
+  height: auto;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: 92% center;
 }
 
 section.row {
