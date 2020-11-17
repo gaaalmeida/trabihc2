@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="zxx">
 
 <head>
   <meta charset="UTF-8">
@@ -9,12 +9,12 @@
   <title>Trabalho de IHC2 - Unisantos</title>
 </head>
 
-<body class="dt" id="body" dark-var>
+<body class="dt dark-var" id="body">
   <header>
-    <nav class="navbar fixed-top justify-content-between dt" dark-var>
+    <nav class="navbar fixed-top justify-content-between dt dark-var">
       <div class="container" id="nav-container">
-        <a class="navbar-brand mb-0 h5" href="https://gaaalmeida.github.io/trabihc2/index.html" accesskey="i">IHC2</a>
-        <div class="menu dt" dark-var>
+        <a class="navbar-brand mb-0 h5" href="index.html" accesskey="i">IHC2</a>
+        <div class="menu dt dark-var">
           <div>
             <label for="theme-toggle" class="sr-only">Trocar tema do site (claro/escuro)</label>
             <a tabindex="0" class="btn" role="button" id="theme-toggle" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="Trocar o tema" data-content="Clique para alterar o tema do site entre claro e escuro.">
@@ -34,7 +34,7 @@
       <div class="row">
         <div class="col-5" id="col-5">
           <!-- Pesquisa -->
-          <div class="input-group mb-4 dt" id="pesquisa" dark-var>
+          <div class="input-group mb-4 dt dark-var" id="pesquisa" >
             <label for="areaPesquisa" class="sr-only">Pesquisar candidato</label>
             <input type="text" id="areaPesquisa" class="form-control" placeholder="Pesquisar candidato" aria-label="Pesquisar candidato" aria-describedby="pesquisarCandidato">
             <div class="input-group-append">
@@ -48,7 +48,7 @@
           </div>
           <!-- Fim Pesquisa -->
           <!-- Filtro -->
-          <div class="filter dt" dark-var>
+          <div class="filter dt dark-var">
             <form>
               <div class="row">
                 <div class="col">
@@ -77,13 +77,13 @@
             <span class="h5 mt-3">Exibindo resultados para Santos</span>
           </div>
           <!-- Fim do Filtro -->
-          <div class="mt-2 dt" id="tab-control-politicos" dark-var>
+          <div class="mt-2 dt" id="tab-control-politicos dark-var" >
             <button id="bons" type="button" tab="bons" class="btn active">Melhores Avaliados</button>
             <button id="ruins" type="button" tab="ruins" class="btn">Piores Avaliados</button>
           </div>
           <div class="tabs" id="tabs-politicos">
             <div class="tab showhide" id="bons">
-              <ul class="list-group ranking dt" id="listbons" dark-var>
+              <ul class="list-group ranking dt dark-var" id="listbons" >
                 <li class="list-group-item">
                   <a id="joscreildo" href="#" profile-id="1candidato">
                     <div class="first-part">
@@ -94,7 +94,7 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <h6>Joscreildo</h6>
+                          <span class="h6">Joscreildo</h6>
                           <span>P1 <span class="badge badge-primary">00000</span></span>
                         </div>
                       </div>
@@ -131,7 +131,7 @@
               </ul>
             </div>
             <div class="tab" id="ruins">
-              <ul class="list-group ranking dt" id="listruins" dark-var>
+              <ul class="list-group ranking dt dark-var" id="listruins" >
                 <li class="list-group-item">
                   <a href="#">
                     <div class="first-part">
@@ -181,7 +181,7 @@
           </div>
         </div>
         <div class="col showhide" id="profile">
-          <div class="profile dt" id="1candidato" active profile dark-var>
+          <div class="profile dt dark-var" id="1candidato" active profile >
             <div class="close">
               <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
               <button type="button" id="closeprofile" close-btn>
@@ -252,7 +252,7 @@
             </div>
             <!-- Fim das abas -->
           </div>
-          <div class="profile dt d-none" id="2candidato" profile dark-var>
+          <div class="profile dt d-none dark-var" id="2candidato" profile >
             <div class="close">
               <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
               <button type="button" id="closeprofile" close-btn>

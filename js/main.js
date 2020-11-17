@@ -29,7 +29,7 @@ class trocaTema {
   }
 
   geraArr() {
-    this.arr = document.querySelectorAll("[dark-var]");
+    this.arr = document.querySelectorAll(".dark-var");
   }
 
   troca() {
