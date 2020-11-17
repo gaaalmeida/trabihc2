@@ -20,7 +20,7 @@
   &:hover {
     background-color: #211212;
 
-    a, span:not(.badge) { color: #e98b8b; }
+    a, span:not(.badge, .h6) { color: #e98b8b; }
   }
 
   &:last-child {
@@ -60,7 +60,7 @@ ul.list-group.ranking {
           border-color: #e98b8b;
         }
 
-        .first-part .about .np span:not(.badge) {
+        .first-part .about .np span:not(.badge, .h6) {
           color: #868C8D;
         }
       }
@@ -111,11 +111,18 @@ ul.list-group.ranking {
 
           .np {
             margin-left: .7rem;
+            display: flex;
+            flex-direction: column;
+
+            span.h6 {
+              font-weight: 700;
+              color: $white;
+            }
 
             span { font-family: "Roboto Condensed", sans-serif; }
           }
 
-          h6 {
+          span.h6 {
             margin: 0;
           }
         }

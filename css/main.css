@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 body {
   background-color: #ffffff;
@@ -65,7 +65,7 @@ body {
 .tab#ruins ul.list-group.ranking.dt li:hover {
   background-color: #211212;
 }
-.tab#ruins ul.list-group.ranking.dt li:hover a, .tab#ruins ul.list-group.ranking.dt li:hover span:not(.badge) {
+.tab#ruins ul.list-group.ranking.dt li:hover a, .tab#ruins ul.list-group.ranking.dt li:hover span:not(.badge, .h6) {
   color: #e98b8b;
 }
 .tab#ruins ul.list-group.ranking.dt li:last-child {
@@ -98,7 +98,7 @@ ul.list-group.ranking.dt li a .second-part .pts span.badge-red {
   color: #e98b8b;
   border-color: #e98b8b;
 }
-ul.list-group.ranking.dt li a .first-part .about .np span:not(.badge) {
+ul.list-group.ranking.dt li a .first-part .about .np span:not(.badge, .h6) {
   color: #868C8D;
 }
 ul.list-group.ranking li {
@@ -127,8 +127,8 @@ ul.list-group.ranking li a .first-part .pos {
   align-items: center;
   margin-right: 1rem;
   text-transform: uppercase;
-  font-weight: thin;
   font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300;
 }
 ul.list-group.ranking li a .first-part img {
   width: 54px;
@@ -142,11 +142,17 @@ ul.list-group.ranking li a .first-part .about {
 }
 ul.list-group.ranking li a .first-part .about .np {
   margin-left: 0.7rem;
+  display: flex;
+  flex-direction: column;
+}
+ul.list-group.ranking li a .first-part .about .np span.h6 {
+  font-weight: 700;
+  color: #ffffff;
 }
 ul.list-group.ranking li a .first-part .about .np span {
   font-family: "Roboto Condensed", sans-serif;
 }
-ul.list-group.ranking li a .first-part .about h6 {
+ul.list-group.ranking li a .first-part .about span.h6 {
   margin: 0;
 }
 ul.list-group.ranking li a .second-part .pts {
@@ -154,7 +160,7 @@ ul.list-group.ranking li a .second-part .pts {
   flex-direction: column;
   align-items: flex-end;
 }
-ul.list-group.ranking li a .second-part .pts h6.score {
+ul.list-group.ranking li a .second-part .pts span.h6.score {
   font-size: 1.125rem;
   margin: 0;
 }
