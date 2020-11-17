@@ -385,10 +385,10 @@ dl.row {
   border-radius: 8px 8px 0 0;
   border-bottom: none;
 }
-#tab-control-politicos:not(.dt) button.active#bons {
+#tab-control-politicos:not(.dt) button.active#bonsBtn {
   border-color: rgba(17, 193, 92, 0.2);
 }
-#tab-control-politicos:not(.dt) button.active#ruins {
+#tab-control-politicos:not(.dt) button.active#ruinsBtn {
   border-color: rgba(233, 139, 139, 0.2);
 }
 #tab-control-politicos.dt button {
@@ -400,12 +400,12 @@ dl.row {
   background: var(--aux2-dt);
   border-color: #babdbe;
 }
-#tab-control-politicos.dt button.active#bons {
+#tab-control-politicos.dt button.active#bonsBtn {
   background-color: #122119;
   color: #11c15c;
   border-color: #11c15c;
 }
-#tab-control-politicos.dt button.active#ruins {
+#tab-control-politicos.dt button.active#ruinsBtn {
   background-color: #211212;
   color: #e98b8b;
   border-color: #e98b8b;
@@ -416,12 +416,12 @@ dl.row {
   border-bottom: none;
   border-color: #e1e1e1;
 }
-#tab-control-politicos button.active#bons {
+#tab-control-politicos button.active#bonsBtn {
   background-color: #bfffdd;
   color: #085a2b;
   border-color: #085a2b;
 }
-#tab-control-politicos button.active#ruins {
+#tab-control-politicos button.active#ruinsBtn {
   background-color: #ffe4e4;
   color: #961c1c;
   border-color: #961c1c;
@@ -449,7 +449,7 @@ dl.row {
   --border-wt: #e1e1e1;
 }
 
-#body.dt {
+#principal.dt {
   color: var(--fc-dt) !important;
   background-color: var(--bg-dt) !important;
 }

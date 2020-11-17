@@ -5,10 +5,10 @@
 
   &:not(.dt) {
     button.active {
-      &#bons {
+      &#bonsBtn {
         border-color: rgba(#11c15c, .2);
       }
-      &#ruins {
+      &#ruinsBtn {
         border-color: rgba(#e98b8b, .2);
       }
     }
@@ -26,12 +26,12 @@
       }
 
       &.active {
-        &#bons {
+        &#bonsBtn {
           background-color: #122119;
           color: #11c15c;
           border-color: #11c15c;
         }
-        &#ruins {
+        &#ruinsBtn {
           background-color: #211212;
           color: #e98b8b;
           border-color: #e98b8b;
@@ -47,12 +47,12 @@
     border-color: #e1e1e1;
 
     &.active {
-      &#bons {
+      &#bonsBtn {
         background-color: #bfffdd;
         color: #085a2b;
         border-color: #085a2b;
       }
-      &#ruins {
+      &#ruinsBtn {
         background-color: #ffe4e4;
         color: #961c1c;
         border-color: #961c1c;
