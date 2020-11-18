@@ -2,7 +2,7 @@ class Toggle {
   constructor(id, classT) {
     this.tag = document.querySelector(`#${id}`);
     this.classT = classT;
-    this.caller = document.querySelectorAll(`[close-btn]`);
+    this.caller = document.querySelectorAll(`.close-btn`);
     this.active = false;
     this.init();
   }
@@ -17,30 +17,18 @@ class Toggle {
     }
   }
 }
+new Toggle("profile", "showhide");
 
-class trocaTema {
-  constructor (darkClass, toggle) {
-    this.arr = [];
-    this.toggle = document.getElementById(toggle);
-    this.darkClass = darkClass;
+/**
+ * Função para trocar o tema do site entre
+ * escuro/claro
+ */
+const trocaTema = () => {
+  const arr = document.querySelectorAll(".dark-var");
 
-    this.geraArr();
-    this.init();
-  }
-
-  geraArr() {
-    this.arr = document.querySelectorAll(".dark-var");
-  }
-
-  troca() {
-    this.arr.forEach(e => {
-      e.classList.toggle(this.darkClass);
-    });
-  }
-
-  init() {
-    this.toggle.addEventListener('click', this.troca.bind(this));
-  }
+  arr.forEach(e => {
+    e.classList.toggle("dt");
+  })
 }
 
 class profileChange {
@@ -103,7 +91,9 @@ class Tabs {
     caller.classList.add("active");
 
     // muda as abas
+
     this.tabs.forEach(e => {
+      console.log(e);
       e.classList.remove("showhide");
       if (e.getAttribute("id") == caller.getAttribute("tab")) {
         e.classList.add("showhide");
@@ -119,19 +109,8 @@ class Tabs {
   }
 }
 
-// Botão de fechar nos perfis
-new Toggle("profile", "showhide");
 
-// Tema escuro/claro
-new trocaTema("dt", "theme-toggle");
-
-// Abas dos politicos
 new Tabs("tab-control", "tabs");
 new Tabs("tab-control-politicos", "tabs-politicos");
 
-// Faz a troca dos perfis
 new profileChange();
-
-$('#theme-toggle').popover({
-  trigger: 'hover'
-})

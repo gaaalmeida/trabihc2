@@ -23,11 +23,17 @@ body {
 .navbar.dt .navbar-brand {
   color: #ffffff;
 }
+.navbar.dt #titulo a {
+  color: #ffffff;
+}
 .navbar.dt .menu a.btn {
   background: var(--aux3-dt);
   color: var(--fc-dt);
 }
 .navbar .navbar-brand {
+  color: #191B1C;
+}
+.navbar #titulo a {
   color: #191B1C;
 }
 .navbar .menu {
@@ -240,6 +246,7 @@ dl.row {
   color: var(--fc-wt);
   border-radius: 8px;
   margin-right: 3px;
+  user-select: none;
 }
 .profile .tab-control-container .tab-control button:last-child {
   margin-right: 0;
@@ -274,6 +281,7 @@ dl.row {
 }
 .tabs .tab.sobre .nome {
   margin-top: 1rem;
+  font-size: 1.45rem;
   color: #191B1C;
   display: flex;
 }
@@ -350,7 +358,6 @@ dl.row {
 }
 #pesquisa.dt .input-group-append #pesquisarCandidato {
   color: #ffffff;
-  font-size: 1.5rem;
   border-color: #66b0ff;
 }
 #pesquisa input {
@@ -395,11 +402,6 @@ dl.row {
   background: var(--aux2-dt);
   color: #babdbe;
 }
-#tab-control-politicos.dt button:not(.active) {
-  color: #babdbe;
-  background: var(--aux2-dt);
-  border-color: #babdbe;
-}
 #tab-control-politicos.dt button.active#bonsBtn {
   background-color: #122119;
   color: #11c15c;
@@ -409,6 +411,11 @@ dl.row {
   background-color: #211212;
   color: #e98b8b;
   border-color: #e98b8b;
+}
+#tab-control-politicos.dt button:not(.active) {
+  color: #babdbe;
+  background: var(--aux2-dt);
+  border-color: #babdbe;
 }
 #tab-control-politicos button {
   flex: 1;

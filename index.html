@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/main.css">
   <title>Trabalho de IHC2 - Unisantos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body class="dt dark-var" id="principal">
-  <header>
+  <header id="menu-superior">
     <nav class="navbar fixed-top justify-content-between dt dark-var">
       <div class="container" id="nav-container">
-        <a class="navbar-brand mb-0 h5" href="index.html" accesskey="i">IHC2</a>
+        <a class="navbar-brand mb-0 h5 sr-only" href="#pesquisa" accesskey="1">IHC2</a>
+        <h1 class="navbar-brand mb-0" id="titulo"><a href="index.html" accesskey="2">IHC2</a></h1>
         <div class="menu dt dark-var">
           <div>
             <label for="theme-toggle" class="sr-only">Trocar tema do site (claro/escuro)</label>
-            <a class="btn" role="button" id="theme-toggle" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="Trocar o tema" data-content="Clique para alterar o tema do site entre claro e escuro.">
+            <noscript>
+              <span>Não é possivel trocar o tema, pois o seu navegador não possui suporte para scripts habilitado.</span>
+            </noscript>
+            <a class="btn" role="button" id="theme-toggle" accesskey="3" onclick="trocaTema()">
               <span class="sr-only">Trocar tema (escuro/claro)</span>
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-moon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M14.53 10.53a7 7 0 0 1-9.058-9.058A7.003 7.003 0 0 0 8 15a7.002 7.002 0 0 0 6.53-4.47z"/>
@@ -28,11 +30,10 @@
       </div>
     </nav>
   </header>
-  <section>
-    <div class="container-lg" id="main-container">
-      <div class="row">
-        <div class="col-5" id="col-5">
-          <!-- Pesquisa -->
+  <div class="container-lg" id="main-container">
+    <div class="row">
+      <div class="col">
+        <section id="secaoPesquisa">
           <div class="input-group mb-4 dt dark-var" id="pesquisa" >
             <label for="areaPesquisa" class="sr-only">Pesquisar candidato</label>
             <input type="text" id="areaPesquisa" class="form-control" placeholder="Pesquisar candidato" aria-label="Pesquisar candidato" aria-describedby="pesquisarCandidato">
@@ -45,46 +46,49 @@
               </button>
             </div>
           </div>
-          <!-- Fim Pesquisa -->
-          <!-- Filtro -->
+        </section>
+        <section id="filtroLista">
           <div class="filter dt dark-var">
             <form>
               <div class="row">
                 <div class="col">
-                  <label for="cidadesselect">Cidade:</label>
-                  <select class="form-control" id="cidadesselect">
-                    <option>Bertioga</option>
-                    <option>Cubatão</option>
-                    <option>Guarujá</option>
-                    <option>Itanhaém</option>
-                    <option>Mongaguá</option>
-                    <option>Peruíbe</option>
-                    <option>Praia Grande</option>
-                    <option>Santos</option>
-                    <option>São Vicente</option>
+                  <label for="selecionarCidade">Escolha a cidade:</label>
+                  <select class="form-control" name="selecionarCidade" id="selecionarCidade">
+                    <option value="Bertioga" label="Bertioga">Bertioga</option>
+                    <option value="Cubatão" label="Cubatão">Cubatão</option>
+                    <option value="Guarujá" label="Guarujá">Guarujá</option>
+                    <option value="Itanhaém" label="Itanhaém">Itanhaém</option>
+                    <option value="Mongaguá" label="Mongaguá">Mongaguá</option>
+                    <option value="Peruíbe" label="Peruíbe">Peruíbe</option>
+                    <option value="Praia Grande" label="Praia Grande">Praia Grande</option>
+                    <option value="Santos" label="Santos">Santos</option>
+                    <option value="São Vicente" label="São Vicente">São Vicente</option>
                   </select>
                 </div>
                 <div class="col">
-                  <label for="cargos">Escolha o cargo:</label>
-                  <select class="form-control" id="cargos">
-                    <option>Prefeito</option>
-                    <option>Vereador</option>
+                  <label for="selecionarCargo">Escolha o cargo:</label>
+                  <select class="form-control" id="selecionarCargo" name="selecionarCargo">
+                    <option value="Prefeito" label="Prefeito">Prefeito</option>
+                    <option value="Vereador" label="Vereador">Vereador</option>
                   </select>
                 </div>
               </div>
             </form>
             <span class="h6" style="display: block; margin-top: 1rem;">Exibindo resultados para Santos</span>
           </div>
-          <!-- Fim do Filtro -->
-          <div class="mt-2 dt dark-var" id="tab-control-politicos" >
+        </section>
+        <section id="controlesDaListaCandidatos">
+          <div class="dt dark-var" id="tab-control-politicos">
             <button id="bonsBtn" type="button" tab="bons" class="btn active">Melhores Avaliados</button>
             <button id="ruinsBtn" type="button" tab="ruins" class="btn">Piores Avaliados</button>
           </div>
+        </section>
+        <section id="rankingDePoliticos">
           <div class="tabs" id="tabs-politicos">
             <div class="tab showhide" id="bons">
-              <ul class="list-group ranking dt dark-var" id="listbons" >
+              <ul class="list-group ranking dt dark-var" id="listbons">
                 <li class="list-group-item">
-                  <a id="joscreildo" href="#" profile-id="1candidato">
+                  <a id="joscreildo" class="active" href="#" profile-id="1candidato">
                     <div class="first-part">
                       <div class="pos">
                         <span class="num">1</span>
@@ -93,14 +97,14 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <span class="h6">Vota neu ai</span>
-                          <span>P1 <span class="badge badge-primary">8777</span></span>
+                          <span>Joscreildo</span>
+                          <span>P1 <span class="badge badge-primary">00000</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-green big"><span class="h6 score">93</h6>pontos</span>
+                        <span class="badge badge-green big"><span class="score">93</span>pontos</span>
                       </div>
                     </div>
                   </a>
@@ -115,14 +119,14 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <span class="h6">Vota neu ai</span>
+                          <span>Vota neu ai</span>
                           <span>LLLL <span class="badge badge-primary">8777</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-green big"><span class="h6 score">93</h6>pontos</span>
+                        <span class="badge badge-green big"><span class="score">93</span>pontos</span>
                       </div>
                     </div>
                   </a>
@@ -141,14 +145,14 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <h6>Mano</h6>
+                          <span>Mano</span>
                           <span>MMM <span class="badge badge-primary">88888</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-red big"><span class="h6 score">3</h6>pontos</span>
+                        <span class="badge badge-red big"><span class="score">3</span>pontos</span>
                       </div>
                     </div>
                   </a>
@@ -163,14 +167,14 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <h6>Bagulho</h6>
+                          <span>Bagulho</span>
                           <span>PLANISTAS <span class="badge badge-primary">2121</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-red big"><span class="h6 score">5</h6>pontos</span>
+                        <span class="badge badge-red big"><span class="score">5</span>pontos</span>
                       </div>
                     </div>
                   </a>
@@ -178,8 +182,11 @@
               </ul>
             </div>
           </div>
-        </div>
-        <div class="col showhide" id="profile">
+        </section>
+
+      </div>
+      <div class="col showhide" id="profile">
+        <section id="perfisDosCandidatos">
           <div class="profile dt dark-var" id="1candidato" active profile >
             <div class="close">
               <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
@@ -202,7 +209,7 @@
               <div class="tab sobre showhide" id="sobre">
                 <div class="center d-flex align-items-center flex-column">
                   <img src="img/user.png" alt="Joscreildo">
-                  <h4 class="nome">Joscreildo <span class="badge bg-primary">P1</span></h4>
+                  <span class="nome">Joscreildo <span class="badge bg-primary">P1</span></span>
                 </div>
                 <dl class="row">
                   <dt class="col-5">Nome</dt>
@@ -251,8 +258,9 @@
             </div>
             <!-- Fim das abas -->
           </div>
-          <div class="profile dt d-none dark-var" id="2candidato" profile >
+          <div class="profile dt dark-var d-none" id="2candidato" profile >
             <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
               <button type="button" id="closeprofile" close-btn>
                 <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
               </button>
@@ -272,7 +280,7 @@
               <div class="tab sobre showhide" id="sobre">
                 <div class="center d-flex align-items-center flex-column">
                   <img src="img/user.png" alt="Joscreildo">
-                  <h4 class="nome">Vota neu ai <span class="badge bg-primary">P1</span></h4>
+                  <span class="nome">aaaaa <span class="badge bg-primary">P1</span></span>
                 </div>
                 <dl class="row">
                   <dt class="col-5">Nome</dt>
@@ -307,33 +315,24 @@
                 </dl>
               </div>
               <div class="tab" id="projetos">
-                <h4>Projetos</h4>
+                <span class="h4">Projetos</span class="h4">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
               </div>
               <div class="tab" id="boasacoes">
-                <h4>Boas Acoes</h4>
+                <span class="h4">Boas Acoes</span class="h4">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
               </div>
               <div class="tab" id="masacoes">
-                <h4>Boas Acoes</h4>
+                <span class="h4">Boas Acoes</span class="h4">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
               </div>
             </div>
             <!-- Fim das abas -->
           </div>
-        </div>
+        </section>
       </div>
     </div>
-  </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    console.log("Jquery carregado");
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
-    console.log("BootstrapJS carregado");
-  </script>
-  <script src="js/main.js">
-    console.log("MainJS carregado");
-  </script>
+  </div>
+  <script src="js/main.js"></script>
 </body>
-
 </html>

@@ -84,6 +84,7 @@ dl.row {
         color: var(--fc-wt);
         border-radius: 8px;
         margin-right: 3px;
+        user-select: none;
         &:last-child { margin-right: 0; }
 
         &.active {
@@ -121,6 +122,7 @@ dl.row {
       }
       .nome {
         margin-top: 1rem;
+        font-size: 1.45rem;
         color: $primary-dark;
         display: flex;
 
