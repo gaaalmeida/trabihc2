@@ -87,6 +87,10 @@ dl.row {
         user-select: none;
         &:last-child { margin-right: 0; }
 
+        .badge {
+          font-size: .6rem;
+        }
+
         &.active {
           background-color: $white;
           border-top: 1px solid white;
@@ -160,7 +164,7 @@ dl.row {
     .close {
       display: flex;
       position: absolute;
-      top: 5rem;
+      top: 4.5rem;
       right: 2rem;
       width: 64px;
       height: 64px;
@@ -191,7 +195,7 @@ dl.row {
 
     .tab-control-container {
       position: relative;
-      top: 0;
+      top: -1rem;
     }
   }
 }

@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
 body {
   background-color: #ffffff;
   font-family: "Roboto", sans-serif;
@@ -251,6 +250,9 @@ dl.row {
 .profile .tab-control-container .tab-control button:last-child {
   margin-right: 0;
 }
+.profile .tab-control-container .tab-control button .badge {
+  font-size: 0.6rem;
+}
 .profile .tab-control-container .tab-control button.active {
   background-color: #ffffff;
   border-top: 1px solid white;
@@ -315,7 +317,7 @@ dl.row {
   .profile .close {
     display: flex;
     position: absolute;
-    top: 5rem;
+    top: 4.5rem;
     right: 2rem;
     width: 64px;
     height: 64px;
@@ -340,7 +342,7 @@ dl.row {
   }
   .profile .tab-control-container {
     position: relative;
-    top: 0;
+    top: -1rem;
   }
 }
 @media (max-width: 640px) {
@@ -444,6 +446,12 @@ dl.row {
   color: #6D7274;
 }
 
+.scroll {
+  max-height: 70vh;
+  padding-right: 1rem;
+  overflow-y: scroll;
+}
+
 :root {
   --fc-wt: #212529;
   --fc-dt: #D0D1D3;
@@ -474,12 +482,14 @@ dl.row {
 }
 
 .badge.badge-green {
+  font-size: 1.125rem;
   background-color: #122119;
   color: #11c15c;
   border: 1px solid #11c15c;
 }
 
 .badge.badge-red {
+  font-size: 1.125rem;
   background-color: #211212;
   color: #e98b8b;
   border: 1px solid #e98b8b;
@@ -504,6 +514,39 @@ dl.row {
   appearance: none;
   background-repeat: no-repeat;
   background-position: 92% center;
+}
+
+.card {
+  border-color: var(--fc-dt);
+}
+.card .card-header {
+  background: var(--aux-wt);
+  padding: 0.33rem 1rem;
+  border-bottom: 1px solid var(--fc-dt);
+  font-weight: 500;
+}
+.card .card-body {
+  background: var(--bg-wt);
+}
+.card .row .col-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border-wt);
+}
+
+.card.dt .row .col-2 {
+  background-color: var(--aux-dt);
+  border-right: 1px solid var(--fc-dt);
+}
+.card.dt .card-header {
+  background: var(--aux2-dt);
+  padding: 0.33rem 1rem;
+  border-bottom: 1px solid var(--border-wt);
+}
+.card.dt .card-body {
+  background: var(--aux3-dt);
+  color: #ffffff;
 }
 
 section.row {

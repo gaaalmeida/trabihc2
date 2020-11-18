@@ -2,7 +2,7 @@ class Toggle {
   constructor(id, classT) {
     this.tag = document.querySelector(`#${id}`);
     this.classT = classT;
-    this.caller = document.querySelectorAll(`.close-btn`);
+    this.caller = document.querySelectorAll(`[close-btn]`);
     this.active = false;
     this.init();
   }
@@ -17,7 +17,6 @@ class Toggle {
     }
   }
 }
-new Toggle("profile", "showhide");
 
 /**
  * Função para trocar o tema do site entre
@@ -109,7 +108,26 @@ class Tabs {
 }
 
 
+class TrocaLista {
+  constructor() {
+    this.cidades = document.querySelector("#selecionarCidade");
+    this.cargos = document.querySelector("#selecionarCargo");
+    this.resultadoFiltro = document.querySelector("#resultadoFiltro");
+    this.listener();
+  }
+
+  trocaTexto() {
+    this.resultadoFiltro.innerHTML = `Exibindo resultados de ${this.cidades.value} para o cargo de ${this.cargos.value}`;
+  }
+
+  listener() {
+    this.cidades.addEventListener('input', this.trocaTexto.bind(this));
+    this.cargos.addEventListener('input', this.trocaTexto.bind(this));
+  }
+}
+
+new Toggle("profile", "showhide");
+new TrocaLista();
 new Tabs("tab-control", "tabs");
 new Tabs("tab-control-politicos", "tabs-politicos");
-
 new profileChange();
