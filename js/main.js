@@ -93,7 +93,6 @@ class Tabs {
     // muda as abas
 
     this.tabs.forEach(e => {
-      console.log(e);
       e.classList.remove("showhide");
       if (e.getAttribute("id") == caller.getAttribute("tab")) {
         e.classList.add("showhide");
