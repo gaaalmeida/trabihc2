@@ -1,2 +1,2 @@
 # trabihc2
-Trabalho de IHC 2
+Trabalho de IHC2
