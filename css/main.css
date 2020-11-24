@@ -140,7 +140,6 @@ ul.list-group.ranking li a .first-part img {
   height: 54px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.6);
-  object-fit: cover;
 }
 ul.list-group.ranking li a .first-part .about {
   display: flex;
@@ -202,10 +201,10 @@ dl.row {
   background: var(--aux-dt);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.profile.dt .tab-control-container .tab-control a {
+.profile.dt .tab-control-container .tab-control button {
   color: var(--fc-dt);
 }
-.profile.dt .tab-control-container .tab-control a.active {
+.profile.dt .tab-control-container .tab-control button.active {
   color: var(--fc-wt);
   background-color: #acacac;
   border-top: 1px solid #343637;
@@ -240,7 +239,7 @@ dl.row {
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
 }
-.profile .tab-control-container .tab-control a {
+.profile .tab-control-container .tab-control button {
   font-size: 1rem;
   font-weight: 500;
   color: var(--fc-wt);
@@ -248,20 +247,13 @@ dl.row {
   margin-right: 3px;
   user-select: none;
 }
-.profile .tab-control-container .tab-control a:last-child {
+.profile .tab-control-container .tab-control button:last-child {
   margin-right: 0;
 }
-<<<<<<< HEAD
-.profile .tab-control-container .tab-control a .badge {
-  font-size: 0.6rem;
-}
-.profile .tab-control-container .tab-control a.active {
-=======
 .profile .tab-control-container .tab-control button .badge {
   font-size: 0.6rem;
 }
 .profile .tab-control-container .tab-control button.active {
->>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
   background-color: #ffffff;
   border-top: 1px solid white;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
@@ -273,39 +265,29 @@ dl.row {
 .tabs .tab.showhide {
   display: block !important;
 }
-
-.nome.dt {
-  color: #ffffff !important;
+.tabs .tab dl.row {
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
-
-.sobre img {
+.tabs .tab dl.row dd {
+  text-align: right;
+}
+.tabs .tab.sobre img {
   max-width: 152px;
   max-height: 152px;
   height: 152px;
   width: 152px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.8);
-  object-fit: cover;
 }
-.sobre dl.row {
-  max-width: 90%;
-  margin: 0 auto;
+.tabs .tab.sobre .nome {
   margin-top: 1rem;
-<<<<<<< HEAD
-}
-.sobre dl.row dd {
-  text-align: right;
-}
-.sobre .nome {
-  margin-top: 1rem;
-=======
->>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
   font-size: 1.45rem;
   color: #191B1C;
   display: flex;
-  text-transform: capitalize;
 }
-.sobre .nome .badge {
+.tabs .tab.sobre .nome .badge {
   margin-left: 0.5rem;
   color: #ffffff;
 }
@@ -361,36 +343,11 @@ dl.row {
   .profile .tab-control-container {
     position: relative;
     top: -1rem;
-<<<<<<< HEAD
-  }
-
-  .sobre {
-    margin-top: 4rem;
-=======
->>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
   }
 }
 @media (max-width: 640px) {
   .profile .tabs .tab dl.row {
     max-width: 100%;
-  }
-}
-@media (max-height: 851px) {
-  .sobre {
-    overflow-y: auto;
-    max-height: 70vh;
-  }
-}
-@media (max-height: 773px) {
-  .sobre {
-    overflow-y: auto;
-    max-height: 65vh;
-  }
-}
-@media (max-height: 650px) {
-  .sobre {
-    overflow-y: auto;
-    max-height: 55vh;
   }
 }
 #pesquisa.dt input {
@@ -592,40 +549,6 @@ dl.row {
   color: #ffffff;
 }
 
-<<<<<<< HEAD
-.cfi {
-  background: rgba(102, 114, 133, 0.2);
-  width: 100%;
-  height: 80px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.cfi input {
-  display: none;
-}
-.cfi label {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-}
-.cfi label small {
-  font-weight: 500;
-}
-.cfi label svg {
-  width: 2rem;
-  height: 2rem;
-  fill: rgba(0, 0, 0, 0.5);
-}
-
-#textarea {
-  height: 150px;
-  min-height: 16px;
-}
-
-=======
->>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
 section.row {
   min-height: 33.33vh;
   max-height: auto;

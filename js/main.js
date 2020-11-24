@@ -18,8 +18,6 @@ class Toggle {
   }
 }
 
-<<<<<<< HEAD
-=======
 /**
  * Função para trocar o tema do site entre
  * escuro/claro
@@ -32,7 +30,6 @@ const trocaTema = () => {
   })
 }
 
->>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
 class profileChange {
   constructor () {
     this.rankingId = document.querySelectorAll("a[profile-id]");
@@ -118,7 +115,6 @@ class TrocaLista {
     this.resultadoFiltro = document.querySelector("#resultadoFiltro");
     this.listener();
   }
-<<<<<<< HEAD
 
   trocaTexto() {
     this.resultadoFiltro.innerHTML = `Exibindo resultados de ${this.cidades.value} para o cargo de ${this.cargos.value}`;
@@ -135,31 +131,3 @@ new TrocaLista();
 new Tabs("tab-control", "tabs");
 new Tabs("tab-control-politicos", "tabs-politicos");
 new profileChange();
-
-// Troca o tema baseado no cache
-trocaTema();
-
-// bootstrap
-
-$('#1candidato-tab li a').on('click', function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-})
-=======
-
-  trocaTexto() {
-    this.resultadoFiltro.innerHTML = `Exibindo resultados de ${this.cidades.value} para o cargo de ${this.cargos.value}`;
-  }
-
-  listener() {
-    this.cidades.addEventListener('input', this.trocaTexto.bind(this));
-    this.cargos.addEventListener('input', this.trocaTexto.bind(this));
-  }
-}
-
-new Toggle("profile", "showhide");
-new TrocaLista();
-new Tabs("tab-control", "tabs");
-new Tabs("tab-control-politicos", "tabs-politicos");
-new profileChange();
->>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
