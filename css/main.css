@@ -251,10 +251,17 @@ dl.row {
 .profile .tab-control-container .tab-control a:last-child {
   margin-right: 0;
 }
+<<<<<<< HEAD
 .profile .tab-control-container .tab-control a .badge {
   font-size: 0.6rem;
 }
 .profile .tab-control-container .tab-control a.active {
+=======
+.profile .tab-control-container .tab-control button .badge {
+  font-size: 0.6rem;
+}
+.profile .tab-control-container .tab-control button.active {
+>>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
   background-color: #ffffff;
   border-top: 1px solid white;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
@@ -284,12 +291,15 @@ dl.row {
   max-width: 90%;
   margin: 0 auto;
   margin-top: 1rem;
+<<<<<<< HEAD
 }
 .sobre dl.row dd {
   text-align: right;
 }
 .sobre .nome {
   margin-top: 1rem;
+=======
+>>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
   font-size: 1.45rem;
   color: #191B1C;
   display: flex;
@@ -351,10 +361,13 @@ dl.row {
   .profile .tab-control-container {
     position: relative;
     top: -1rem;
+<<<<<<< HEAD
   }
 
   .sobre {
     margin-top: 4rem;
+=======
+>>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
   }
 }
 @media (max-width: 640px) {
@@ -579,6 +592,7 @@ dl.row {
   color: #ffffff;
 }
 
+<<<<<<< HEAD
 .cfi {
   background: rgba(102, 114, 133, 0.2);
   width: 100%;
@@ -610,6 +624,8 @@ dl.row {
   min-height: 16px;
 }
 
+=======
+>>>>>>> 9fa535fd49de8e8350310f5e8fa4e3bd43c8b20f
 section.row {
   min-height: 33.33vh;
   max-height: auto;
