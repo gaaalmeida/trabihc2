@@ -140,6 +140,7 @@ ul.list-group.ranking li a .first-part img {
   height: 54px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.6);
+  object-fit: cover;
 }
 ul.list-group.ranking li a .first-part .about {
   display: flex;
@@ -266,6 +267,10 @@ dl.row {
   display: block !important;
 }
 
+.nome.dt {
+  color: #ffffff !important;
+}
+
 .sobre img {
   max-width: 152px;
   max-height: 152px;
@@ -273,6 +278,7 @@ dl.row {
   width: 152px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.8);
+  object-fit: cover;
 }
 .sobre dl.row {
   max-width: 90%;
@@ -287,6 +293,7 @@ dl.row {
   font-size: 1.45rem;
   color: #191B1C;
   display: flex;
+  text-transform: capitalize;
 }
 .sobre .nome .badge {
   margin-left: 0.5rem;
