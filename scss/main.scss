@@ -1,7 +1,6 @@
 // Google fonts
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
 // Custom variables
 $sidebar-padding: 1.25rem;
 
@@ -31,6 +30,9 @@ body {
 @import "theme";
 @import "badges";
 @import "filter";
+@import "card";
+@import "file";
+@import "form_modal";
 
 // Home
 section.row {
