@@ -10,6 +10,10 @@
 
     .navbar-brand { color: $white; }
 
+    #titulo a {
+      color: $white;
+    }
+
     .menu a.btn {
       background: var(--aux3-dt);
       color: var(--fc-dt);
@@ -17,6 +21,10 @@
   }
 
   .navbar-brand {
+    color: $primary-dark;
+  }
+
+  #titulo a {
     color: $primary-dark;
   }
 

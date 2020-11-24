@@ -34,7 +34,7 @@ dl.row {
       background: var(--aux-dt);
       border: 1px solid rgba($white, .3);
 
-      button {
+      a {
         color: var(--fc-dt);
         &.active {
           color: var(--fc-wt);
@@ -78,13 +78,18 @@ dl.row {
       padding: .4rem .6rem;
       border-radius: 6px;
 
-      button {
+      a {
         font-size: 1rem;
         font-weight: 500;
         color: var(--fc-wt);
         border-radius: 8px;
         margin-right: 3px;
+        user-select: none;
         &:last-child { margin-right: 0; }
+
+        .badge {
+          font-size: .6rem;
+        }
 
         &.active {
           background-color: $white;
@@ -102,35 +107,35 @@ dl.row {
     &.showhide {
       display: block !important;
     }
+  }
+}
+.sobre {
+    img {
+      max-width: 152px;
+      max-height: 152px;
+      height: 152px;
+      width: 152px;
+      border-radius: 50%;
+      border: 2px solid rgba($white, .8);
+    }
 
     dl.row {
-      max-width: 90%;
-      margin: 0 auto;
-      margin-top: 1rem;
-      dd { text-align: right; }
-    }
-
-    &.sobre {
-      img {
-        max-width: 152px;
-        max-height: 152px;
-        height: 152px;
-        width: 152px;
-        border-radius: 50%;
-        border: 2px solid rgba($white, .8);
-      }
-      .nome {
+        max-width: 90%;
+        margin: 0 auto;
         margin-top: 1rem;
-        color: $primary-dark;
-        display: flex;
+        dd { text-align: right; }
+    }
+    .nome {
+      margin-top: 1rem;
+      font-size: 1.45rem;
+      color: $primary-dark;
+      display: flex;
 
-        .badge {
-          margin-left: .5rem;
-          color: $white;
-        }
+      .badge {
+        margin-left: .5rem;
+        color: $white;
       }
     }
-  }
 }
 
 @media (max-width: 992px) {
@@ -158,7 +163,7 @@ dl.row {
     .close {
       display: flex;
       position: absolute;
-      top: 5rem;
+      top: 4.5rem;
       right: 2rem;
       width: 64px;
       height: 64px;
@@ -189,13 +194,38 @@ dl.row {
 
     .tab-control-container {
       position: relative;
-      top: 0;
+      top: -1rem;
     }
   }
+
+  .sobre {
+    margin-top: 4rem;
+}
 }
 
 @media (max-width: 640px) {
   .profile .tabs .tab dl.row{
     max-width: 100%;
   }
+}
+
+@media (max-height: 851px) {
+    .sobre {
+        overflow-y: auto;
+        max-height: 70vh;
+    }
+}
+
+@media (max-height: 773px) {
+    .sobre {
+        overflow-y: auto;
+        max-height: 65vh;
+    }
+}
+
+@media (max-height: 650px) {
+    .sobre {
+        overflow-y: auto;
+        max-height: 55vh;
+    }
 }

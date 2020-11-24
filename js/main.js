@@ -18,31 +18,6 @@ class Toggle {
   }
 }
 
-class trocaTema {
-  constructor (darkClass, toggle) {
-    this.arr = [];
-    this.toggle = document.getElementById(toggle);
-    this.darkClass = darkClass;
-
-    this.geraArr();
-    this.init();
-  }
-
-  geraArr() {
-    this.arr = document.querySelectorAll(".dark-var");
-  }
-
-  troca() {
-    this.arr.forEach(e => {
-      e.classList.toggle(this.darkClass);
-    });
-  }
-
-  init() {
-    this.toggle.addEventListener('click', this.troca.bind(this));
-  }
-}
-
 class profileChange {
   constructor () {
     this.rankingId = document.querySelectorAll("a[profile-id]");
@@ -103,6 +78,7 @@ class Tabs {
     caller.classList.add("active");
 
     // muda as abas
+
     this.tabs.forEach(e => {
       e.classList.remove("showhide");
       if (e.getAttribute("id") == caller.getAttribute("tab")) {
@@ -119,19 +95,37 @@ class Tabs {
   }
 }
 
-// Botão de fechar nos perfis
+
+class TrocaLista {
+  constructor() {
+    this.cidades = document.querySelector("#selecionarCidade");
+    this.cargos = document.querySelector("#selecionarCargo");
+    this.resultadoFiltro = document.querySelector("#resultadoFiltro");
+    this.listener();
+  }
+
+  trocaTexto() {
+    this.resultadoFiltro.innerHTML = `Exibindo resultados de ${this.cidades.value} para o cargo de ${this.cargos.value}`;
+  }
+
+  listener() {
+    this.cidades.addEventListener('input', this.trocaTexto.bind(this));
+    this.cargos.addEventListener('input', this.trocaTexto.bind(this));
+  }
+}
+
 new Toggle("profile", "showhide");
-
-// Tema escuro/claro
-new trocaTema("dt", "theme-toggle");
-
-// Abas dos politicos
+new TrocaLista();
 new Tabs("tab-control", "tabs");
 new Tabs("tab-control-politicos", "tabs-politicos");
-
-// Faz a troca dos perfis
 new profileChange();
 
-$('#theme-toggle').popover({
-  trigger: 'hover'
+// Troca o tema baseado no cache
+trocaTema();
+
+// bootstrap
+
+$('#1candidato-tab li a').on('click', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
 })

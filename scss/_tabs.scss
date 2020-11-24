@@ -19,12 +19,6 @@
       background: var(--aux2-dt);
       color: #babdbe;
 
-      &:not(.active) {
-        color: #babdbe;
-        background: var(--aux2-dt);
-        border-color: #babdbe;
-      }
-
       &.active {
         &#bonsBtn {
           background-color: #122119;
@@ -36,6 +30,12 @@
           color: #e98b8b;
           border-color: #e98b8b;
         }
+      }
+
+      &:not(.active) {
+        color: #babdbe;
+        background: var(--aux2-dt);
+        border-color: #babdbe;
       }
     }
   }
@@ -72,4 +72,10 @@
     }
 
   }
+}
+
+.scroll {
+  max-height: 70vh;
+  padding-right: 1rem;
+  overflow-y: scroll;
 }

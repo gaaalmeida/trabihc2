@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
 body {
   background-color: #ffffff;
   font-family: "Roboto", sans-serif;
@@ -23,11 +22,17 @@ body {
 .navbar.dt .navbar-brand {
   color: #ffffff;
 }
+.navbar.dt #titulo a {
+  color: #ffffff;
+}
 .navbar.dt .menu a.btn {
   background: var(--aux3-dt);
   color: var(--fc-dt);
 }
 .navbar .navbar-brand {
+  color: #191B1C;
+}
+.navbar #titulo a {
   color: #191B1C;
 }
 .navbar .menu {
@@ -196,10 +201,10 @@ dl.row {
   background: var(--aux-dt);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.profile.dt .tab-control-container .tab-control button {
+.profile.dt .tab-control-container .tab-control a {
   color: var(--fc-dt);
 }
-.profile.dt .tab-control-container .tab-control button.active {
+.profile.dt .tab-control-container .tab-control a.active {
   color: var(--fc-wt);
   background-color: #acacac;
   border-top: 1px solid #343637;
@@ -234,17 +239,21 @@ dl.row {
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
 }
-.profile .tab-control-container .tab-control button {
+.profile .tab-control-container .tab-control a {
   font-size: 1rem;
   font-weight: 500;
   color: var(--fc-wt);
   border-radius: 8px;
   margin-right: 3px;
+  user-select: none;
 }
-.profile .tab-control-container .tab-control button:last-child {
+.profile .tab-control-container .tab-control a:last-child {
   margin-right: 0;
 }
-.profile .tab-control-container .tab-control button.active {
+.profile .tab-control-container .tab-control a .badge {
+  font-size: 0.6rem;
+}
+.profile .tab-control-container .tab-control a.active {
   background-color: #ffffff;
   border-top: 1px solid white;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
@@ -256,15 +265,8 @@ dl.row {
 .tabs .tab.showhide {
   display: block !important;
 }
-.tabs .tab dl.row {
-  max-width: 90%;
-  margin: 0 auto;
-  margin-top: 1rem;
-}
-.tabs .tab dl.row dd {
-  text-align: right;
-}
-.tabs .tab.sobre img {
+
+.sobre img {
   max-width: 152px;
   max-height: 152px;
   height: 152px;
@@ -272,12 +274,21 @@ dl.row {
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
-.tabs .tab.sobre .nome {
+.sobre dl.row {
+  max-width: 90%;
+  margin: 0 auto;
   margin-top: 1rem;
+}
+.sobre dl.row dd {
+  text-align: right;
+}
+.sobre .nome {
+  margin-top: 1rem;
+  font-size: 1.45rem;
   color: #191B1C;
   display: flex;
 }
-.tabs .tab.sobre .nome .badge {
+.sobre .nome .badge {
   margin-left: 0.5rem;
   color: #ffffff;
 }
@@ -307,7 +318,7 @@ dl.row {
   .profile .close {
     display: flex;
     position: absolute;
-    top: 5rem;
+    top: 4.5rem;
     right: 2rem;
     width: 64px;
     height: 64px;
@@ -332,12 +343,34 @@ dl.row {
   }
   .profile .tab-control-container {
     position: relative;
-    top: 0;
+    top: -1rem;
+  }
+
+  .sobre {
+    margin-top: 4rem;
   }
 }
 @media (max-width: 640px) {
   .profile .tabs .tab dl.row {
     max-width: 100%;
+  }
+}
+@media (max-height: 851px) {
+  .sobre {
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+}
+@media (max-height: 773px) {
+  .sobre {
+    overflow-y: auto;
+    max-height: 65vh;
+  }
+}
+@media (max-height: 650px) {
+  .sobre {
+    overflow-y: auto;
+    max-height: 55vh;
   }
 }
 #pesquisa.dt input {
@@ -350,7 +383,6 @@ dl.row {
 }
 #pesquisa.dt .input-group-append #pesquisarCandidato {
   color: #ffffff;
-  font-size: 1.5rem;
   border-color: #66b0ff;
 }
 #pesquisa input {
@@ -395,11 +427,6 @@ dl.row {
   background: var(--aux2-dt);
   color: #babdbe;
 }
-#tab-control-politicos.dt button:not(.active) {
-  color: #babdbe;
-  background: var(--aux2-dt);
-  border-color: #babdbe;
-}
 #tab-control-politicos.dt button.active#bonsBtn {
   background-color: #122119;
   color: #11c15c;
@@ -409,6 +436,11 @@ dl.row {
   background-color: #211212;
   color: #e98b8b;
   border-color: #e98b8b;
+}
+#tab-control-politicos.dt button:not(.active) {
+  color: #babdbe;
+  background: var(--aux2-dt);
+  border-color: #babdbe;
 }
 #tab-control-politicos button {
   flex: 1;
@@ -435,6 +467,12 @@ dl.row {
 #tab-control-politicos button:not(.active) {
   background-color: #fafafa;
   color: #6D7274;
+}
+
+.scroll {
+  max-height: 70vh;
+  padding-right: 1rem;
+  overflow-y: scroll;
 }
 
 :root {
@@ -467,12 +505,14 @@ dl.row {
 }
 
 .badge.badge-green {
+  font-size: 1.125rem;
   background-color: #122119;
   color: #11c15c;
   border: 1px solid #11c15c;
 }
 
 .badge.badge-red {
+  font-size: 1.125rem;
   background-color: #211212;
   color: #e98b8b;
   border: 1px solid #e98b8b;
@@ -497,6 +537,70 @@ dl.row {
   appearance: none;
   background-repeat: no-repeat;
   background-position: 92% center;
+}
+
+.card {
+  border-color: var(--fc-dt);
+}
+.card .card-header {
+  background: var(--aux-wt);
+  padding: 0.33rem 1rem;
+  border-bottom: 1px solid var(--fc-dt);
+  font-weight: 500;
+}
+.card .card-body {
+  background: var(--bg-wt);
+}
+.card .row .col-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border-wt);
+}
+
+.card.dt .row .col-2 {
+  background-color: var(--aux-dt);
+  border-right: 1px solid var(--fc-dt);
+}
+.card.dt .card-header {
+  background: var(--aux2-dt);
+  padding: 0.33rem 1rem;
+  border-bottom: 1px solid var(--border-wt);
+}
+.card.dt .card-body {
+  background: var(--aux3-dt);
+  color: #ffffff;
+}
+
+.cfi {
+  background: rgba(102, 114, 133, 0.2);
+  width: 100%;
+  height: 80px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.cfi input {
+  display: none;
+}
+.cfi label {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+.cfi label small {
+  font-weight: 500;
+}
+.cfi label svg {
+  width: 2rem;
+  height: 2rem;
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+#textarea {
+  height: 150px;
+  min-height: 16px;
 }
 
 section.row {

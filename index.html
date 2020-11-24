@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/main.css">
   <title>Trabalho de IHC2 - Unisantos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body class="dt dark-var" id="principal">
-  <header>
+  <header id="menu-superior">
     <nav class="navbar fixed-top justify-content-between dt dark-var">
       <div class="container" id="nav-container">
-        <a class="navbar-brand mb-0 h5" href="index.html" accesskey="i">IHC2</a>
+        <a class="navbar-brand mb-0 h5 sr-only" href="#pesquisa" accesskey="1">IHC2</a>
+        <h1 class="navbar-brand mb-0" id="titulo"><a href="index.html" accesskey="2">IHC2</a></h1>
         <div class="menu dt dark-var">
           <div>
             <label for="theme-toggle" class="sr-only">Trocar tema do site (claro/escuro)</label>
-            <a class="btn" role="button" id="theme-toggle" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="Trocar o tema" data-content="Clique para alterar o tema do site entre claro e escuro.">
+            <noscript>
+              <span>Não é possivel trocar o tema, pois o seu navegador não possui suporte para scripts habilitado.</span>
+            </noscript>
+            <a class="btn" role="button" id="theme-toggle" accesskey="3" onclick="temaCache()">
               <span class="sr-only">Trocar tema (escuro/claro)</span>
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-moon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M14.53 10.53a7 7 0 0 1-9.058-9.058A7.003 7.003 0 0 0 8 15a7.002 7.002 0 0 0 6.53-4.47z"/>
@@ -28,11 +30,63 @@
       </div>
     </nav>
   </header>
-  <section>
-    <div class="container-lg" id="main-container">
-      <div class="row">
-        <div class="col-5" id="col-5">
-          <!-- Pesquisa -->
+  <div class="container-lg mb-3" id="main-container">
+    <section id="modalSec">
+        <div class="modal" id="denunciarModal">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-title h5">Informar</span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Seu email</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <small id="emailHelp" class="form-text text-muted">Nunca iremos divulgar o seu email.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="tipoInformar">Informe se é uma denúncia ou elogio</label>
+                                <select class="form-control" name="tipoInformar" id="tipoInformar">
+                                    <option value="Elogio" label="Elogio">Elogio</option>
+                                    <option value="Denúncia" label="Denúncia">Denúncia</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span class="h6">Anexe arquivos (Opcional)</span>
+                                <small class="form-text text-muted">Se quiser você pode anexar fotos, videos, pdfs ou qualquer tipo de arquivo que comprove a sua denúncia/elogio</small>
+                              <div class="cfi">
+                                <label for="dragdrop">
+                                    <span class="sr-only">Anexar arquivos</span>
+                                    <svg width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cloud-upload-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0zm-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0z"/>
+                                    </svg>
+                                    <small>Arraste ou clique para anexar arquivos</small>
+                                </label>
+                                  <input type="file" class="custom-file-input" id="dragdrop">
+                              </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="textarea">Descreva sua denúncia/elogio</label>
+                                <textarea class="form-control" id="textarea" aria-label="Descreva a denúncia ou elogio"></textarea>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    <div class="row">
+      <div class="col">
+        <section id="secaoPesquisa">
           <div class="input-group mb-4 dt dark-var" id="pesquisa" >
             <label for="areaPesquisa" class="sr-only">Pesquisar candidato</label>
             <input type="text" id="areaPesquisa" class="form-control" placeholder="Pesquisar candidato" aria-label="Pesquisar candidato" aria-describedby="pesquisarCandidato">
@@ -45,46 +99,49 @@
               </button>
             </div>
           </div>
-          <!-- Fim Pesquisa -->
-          <!-- Filtro -->
+        </section>
+        <section id="filtroLista">
           <div class="filter dt dark-var">
             <form>
               <div class="row">
                 <div class="col">
-                  <label for="cidadesselect">Cidade:</label>
-                  <select class="form-control" id="cidadesselect">
-                    <option>Bertioga</option>
-                    <option>Cubatão</option>
-                    <option>Guarujá</option>
-                    <option>Itanhaém</option>
-                    <option>Mongaguá</option>
-                    <option>Peruíbe</option>
-                    <option>Praia Grande</option>
-                    <option>Santos</option>
-                    <option>São Vicente</option>
+                  <label for="selecionarCidade">Escolha a cidade:</label>
+                  <select class="form-control" name="selecionarCidade" id="selecionarCidade">
+                    <option value="Bertioga" label="Bertioga">Bertioga</option>
+                    <option value="Cubatão" label="Cubatão">Cubatão</option>
+                    <option value="Guarujá" label="Guarujá">Guarujá</option>
+                    <option value="Itanhaém" label="Itanhaém">Itanhaém</option>
+                    <option value="Mongaguá" label="Mongaguá">Mongaguá</option>
+                    <option value="Peruíbe" label="Peruíbe">Peruíbe</option>
+                    <option value="Praia Grande" label="Praia Grande">Praia Grande</option>
+                    <option value="Santos" label="Santos">Santos</option>
+                    <option value="São Vicente" label="São Vicente">São Vicente</option>
                   </select>
                 </div>
                 <div class="col">
-                  <label for="cargos">Escolha o cargo:</label>
-                  <select class="form-control" id="cargos">
-                    <option>Prefeito</option>
-                    <option>Vereador</option>
+                  <label for="selecionarCargo">Escolha o cargo:</label>
+                  <select class="form-control" id="selecionarCargo" name="selecionarCargo">
+                    <option value="Prefeito" label="Prefeito">Prefeito</option>
+                    <option value="Vereador" label="Vereador">Vereador</option>
                   </select>
                 </div>
               </div>
             </form>
-            <span class="h6" style="display: block; margin-top: 1rem;">Exibindo resultados para Santos</span>
+            <span class="h6" id="resultadoFiltro" style="display: block; margin-top: 1.4rem;">Exibindo resultados de Bertioga para o cargo de Prefeito</span>
           </div>
-          <!-- Fim do Filtro -->
-          <div class="mt-2 dt dark-var" id="tab-control-politicos" >
+        </section>
+        <section id="controlesDaListaCandidatos">
+          <div class="dt dark-var" id="tab-control-politicos">
             <button id="bonsBtn" type="button" tab="bons" class="btn active">Melhores Avaliados</button>
             <button id="ruinsBtn" type="button" tab="ruins" class="btn">Piores Avaliados</button>
           </div>
+        </section>
+        <section id="rankingDePoliticos">
           <div class="tabs" id="tabs-politicos">
             <div class="tab showhide" id="bons">
-              <ul class="list-group ranking dt dark-var" id="listbons" >
+              <ul class="list-group ranking dt dark-var" id="listbons">
                 <li class="list-group-item">
-                  <a id="joscreildo" href="#" profile-id="1candidato">
+                  <a id="joscreildo" class="active" href="#" profile-id="1candidato">
                     <div class="first-part">
                       <div class="pos">
                         <span class="num">1</span>
@@ -93,14 +150,14 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <span class="h6">Vota neu ai</span>
-                          <span>P1 <span class="badge badge-primary">8777</span></span>
+                          <span>Candidato 1</span>
+                          <span>Partido <span class="badge badge-primary">00000</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-green big"><span class="h6 score">93</h6>pontos</span>
+                        <span class="badge badge-green big"><span class="score">93</span> pontos</span>
                       </div>
                     </div>
                   </a>
@@ -115,14 +172,80 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <span class="h6">Vota neu ai</span>
-                          <span>LLLL <span class="badge badge-primary">8777</span></span>
+                          <span>Candidato 2</span>
+                          <span>Partido <span class="badge badge-primary">8777</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-green big"><span class="h6 score">93</h6>pontos</span>
+                        <span class="badge badge-green big"><span class="score">92</span> pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" profile-id="3candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">3</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <span>Candidato 3</span>
+                          <span>Partido <span class="badge badge-primary">1231</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-green big"><span class="score">85</span> pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" profile-id="4candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">4</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <span>Candidato 2</span>
+                          <span>Partido <span class="badge badge-primary">3642</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-green big"><span class="score">77</span> pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" profile-id="5candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">5</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <span>Candidato 5</span>
+                          <span>Partido <span class="badge badge-primary">74321</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-green big"><span class="score">65</span> pontos</span>
                       </div>
                     </div>
                   </a>
@@ -132,7 +255,7 @@
             <div class="tab" id="ruins">
               <ul class="list-group ranking dt dark-var" id="listruins" >
                 <li class="list-group-item">
-                  <a href="#">
+                  <a id="joscreildo" class="active" href="#" profile-id="6candidato">
                     <div class="first-part">
                       <div class="pos">
                         <span class="num">1</span>
@@ -141,20 +264,20 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <h6>Mano</h6>
-                          <span>MMM <span class="badge badge-primary">88888</span></span>
+                          <span>Candidato 6</span>
+                          <span>Partido <span class="badge badge-primary">88863</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-red big"><span class="h6 score">3</h6>pontos</span>
+                        <span class="badge badge-red big"><span class="score">34</span> pontos</span>
                       </div>
                     </div>
                   </a>
                 </li>
                 <li class="list-group-item">
-                  <a href="#">
+                  <a href="#" profile-id="7candidato">
                     <div class="first-part">
                       <div class="pos">
                         <span class="num">2</span>
@@ -163,14 +286,80 @@
                       <div class="about">
                         <img src="img/user.png" alt="Nome do Candidato">
                         <div class="np">
-                          <h6>Bagulho</h6>
-                          <span>PLANISTAS <span class="badge badge-primary">2121</span></span>
+                          <span>Candidato 7</span>
+                          <span>Partido <span class="badge badge-primary">63133</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="second-part">
                       <div class="pts">
-                        <span class="badge badge-red big"><span class="h6 score">5</h6>pontos</span>
+                        <span class="badge badge-red big"><span class="score">32</span> pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" profile-id="8candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">3</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <span>Candidato 8</span>
+                          <span>Partido <span class="badge badge-primary">86753</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-red big"><span class="score">23</span> pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" profile-id="9candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">4</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <span>Candidato 9</span>
+                          <span>Partido <span class="badge badge-primary">63452</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-red big"><span class="score">18</span> pontos</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="#" profile-id="10candidato">
+                    <div class="first-part">
+                      <div class="pos">
+                        <span class="num">5</span>
+                        <span>pos.</span>
+                      </div>
+                      <div class="about">
+                        <img src="img/user.png" alt="Nome do Candidato">
+                        <div class="np">
+                          <span>Candidato 10</span>
+                          <span>Partido <span class="badge badge-primary">35452</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="second-part">
+                      <div class="pts">
+                        <span class="badge badge-red big"><span class="score">11</span> pontos</span>
                       </div>
                     </div>
                   </a>
@@ -178,9 +367,274 @@
               </ul>
             </div>
           </div>
-        </div>
-        <div class="col showhide" id="profile">
+        </section>
+
+      </div>
+      <div class="col showhide" id="profile">
+        <section id="perfisDosCandidatos">
+          <!-- // CANDIDATO 1 VAI LOGO ABAIXO -->
           <div class="profile dt dark-var" id="1candidato" active profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <div class="tab-control-container">
+                <ul class="nav nav-pills tab-control" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="candidato1-sobre-tab" data-toggle="pill" href="#candidato1-sobre" role="tab" aria-controls="candidato1-sobre" aria-selected="true">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="candidato1-projetos-tab" data-toggle="pill" href="#candidato1-projetos" role="tab" aria-controls="candidato1-projetos" aria-selected="false">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="candidato1-boas-tab" data-toggle="pill" href="#candidato1-boas" role="tab" aria-controls="candidato1-boas" aria-selected="false">Boas Ações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="candidato1-mas-tab" data-toggle="pill" href="#candidato1-mas" role="tab" aria-controls="candidato1-mas" aria-selected="false">Más Ações</a>
+                    </li>
+
+                    </ul>
+            </div>
+              <div class="tab-content" id="candidato1-content">
+                <div class="tab-pane fade show active sobre" id="candidato1-sobre" role="tabpanel" aria-labelledby="candidato1-sobre-tab">
+                    <div class="center d-flex align-items-center flex-column">
+                        <img src="img/user.png" alt="Candidato 1">
+                        <span class="nome">Candidato 1</span>
+                      </div>
+                      <dl class="row">
+                        <dt class="col-5">Nome</dt>
+                        <dd class="col-7">
+                          <p>Nome completo do candidato 1</p>
+                        </dd>
+
+                        <dt class="col-5">Data de nascimento</dt>
+                        <dd class="col-7">
+                          <p>12 de janeiro de 1900 (120 anos)</p>
+                        </dd>
+
+                        <dt class="col-5">Gênero</dt>
+                        <dd class="col-7">
+                          <p>Masculino</p>
+                        </dd>
+
+                        <dt class="col-5">Estado civil</dt>
+                        <dd class="col-7">
+                          <p>Casado(a)</p>
+                        </dd>
+
+                        <dt class="col-5">Ocupação</dt>
+                        <dd class="col-7">
+                          <p>Pianista</p>
+                        </dd>
+
+                        <dt class="col-5">Grau de instrução</dt>
+                        <dd class="col-7">
+                          <p>Superior Completo</p>
+                        </dd>
+                      </dl>
+                      <div class="container-fluid mt-3">
+                          <div class="row justify-content-center align-items-center">
+                            <span class="h6 mr-2 mb-0">Faça uma denúncia ou elogio</span>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#denunciarModal" type="button">Denúncia/Elogio</button>
+                          </div>
+                      </div>
+                </div>
+                <div class="tab-pane fade tab scroll" id="candidato1-projetos" role="tabpanel" aria-labelledby="candidato1-projetos-tab">
+                    <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                </div>
+                <div class="tab-pane fade tab scroll" id="candidato1-boas" role="tabpanel" aria-labelledby="candidato1-boas-tab">
+                    <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              +15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              +15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              +15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              +15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              +15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              +15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+                <div class="tab-pane fade tab scroll" id="candidato1-mas" role="tabpanel" aria-labelledby="candidato1-mas-tab">
+                    <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              -15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              -15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              -15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              -15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              -15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card dt dark-var mb-3">
+                          <div class="row no-gutters">
+                            <div class="col-2">
+                              -15 pts
+                            </div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+              </div>
+            <!-- abas -->
+          </div>
+          <!-- a-->
+          <div class="profile dt d-none dark-var" id="2candidato" profile >
             <div class="close">
               <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
               <button type="button" id="closeprofile" close-btn>
@@ -201,13 +655,13 @@
             <div class="tabs" id="tabs">
               <div class="tab sobre showhide" id="sobre">
                 <div class="center d-flex align-items-center flex-column">
-                  <img src="img/user.png" alt="Joscreildo">
-                  <h4 class="nome">Joscreildo <span class="badge bg-primary">P1</span></h4>
+                  <img src="img/user.png" alt="Candidato 2">
+                  <span class="nome">Candidato 2</span>
                 </div>
                 <dl class="row">
                   <dt class="col-5">Nome</dt>
                   <dd class="col-7">
-                    <p>Nome completo do candidato</p>
+                    <p>Nome completo do candidato 2</p>
                   </dd>
 
                   <dt class="col-5">Data de nascimento</dt>
@@ -236,23 +690,201 @@
                   </dd>
                 </dl>
               </div>
-              <div class="tab" id="projetos">
-                <span class="h4">Projetos</span class="h4">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
               </div>
-              <div class="tab" id="boasacoes">
-                <span class="h4">Boas Acoes</span class="h4">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="tab" id="masacoes">
-                <span class="h4">Boas Acoes</span class="h4">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
             <!-- Fim das abas -->
           </div>
-          <div class="profile dt d-none dark-var" id="2candidato" profile >
+          <div class="profile dt d-none dark-var" id="3candidato" profile >
             <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
               <button type="button" id="closeprofile" close-btn>
                 <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
               </button>
@@ -271,13 +903,13 @@
             <div class="tabs" id="tabs">
               <div class="tab sobre showhide" id="sobre">
                 <div class="center d-flex align-items-center flex-column">
-                  <img src="img/user.png" alt="Joscreildo">
-                  <h4 class="nome">Vota neu ai <span class="badge bg-primary">P1</span></h4>
+                  <img src="img/user.png" alt="Candidato 3">
+                  <span class="nome">Candidato 3</span>
                 </div>
                 <dl class="row">
                   <dt class="col-5">Nome</dt>
                   <dd class="col-7">
-                    <p>Nome completo do candidato</p>
+                    <p>Nome completo do candidato 3</p>
                   </dd>
 
                   <dt class="col-5">Data de nascimento</dt>
@@ -306,34 +938,1948 @@
                   </dd>
                 </dl>
               </div>
-              <div class="tab" id="projetos">
-                <h4>Projetos</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
               </div>
-              <div class="tab" id="boasacoes">
-                <h4>Boas Acoes</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="tab" id="masacoes">
-                <h4>Boas Acoes</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci soluta ipsa iste rerum labore fugiat, deserunt temporibus repellendus voluptatum eius ipsum voluptatem quaerat ad accusantium sapiente possimus! Ut, sunt ullam!</p>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
             <!-- Fim das abas -->
           </div>
-        </div>
+          <div class="profile dt d-none dark-var" id="4candidato" profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-green rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Candidato 4">
+                  <span class="nome">Candidato 4</span>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato 4</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
+          <div class="profile dt d-none dark-var" id="5candidato" profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-green rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Candidato 5">
+                  <span class="nome">Candidato 5</span>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato 5</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
+          <div class="profile dt d-none dark-var" id="6candidato" profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-red rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Candidato 6">
+                  <span class="nome">Candidato 6</span>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato 6</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
+          <div class="profile dt d-none dark-var" id="7candidato" profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-red rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Candidato 7">
+                  <span class="nome">Candidato 7</span>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato 7</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
+          <div class="profile dt d-none dark-var" id="8candidato" profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-red rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Candidato 8">
+                  <span class="nome">Candidato 8</span>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato 8</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
+          <div class="profile dt d-none dark-var" id="9candidato" profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-red rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Candidato 4">
+                  <span class="nome">Candidato 9</span>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato 9</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
+          <div class="profile dt d-none dark-var" id="10candidato" profile >
+            <div class="close">
+              <label for="closeprofile" class="sr-only">Fechar Pagina sobre o candidato</label>
+              <button type="button" id="closeprofile" close-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" viewBox="0 0 329.26933 329" width="1.25rem" fill="currentColor"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg>
+              </button>
+            </div>
+            <!-- Inicio do controle -->
+            <div class="tab-control-container">
+              <div class="tab-control" id="tab-control">
+                <button type="button" tab="sobre" class="btn active">Sobre</button>
+                <button type="button" tab="projetos" class="btn">Projetos</button>
+                <button type="button" tab="boasacoes" class="btn">Boas Ações <span class="badge badge-red rounded">6</span></button>
+                <button type="button" tab="masacoes" class="btn">Más Ações <span class="badge badge-red rounded">12</span></button>
+              </div>
+            </div>
+            <!-- Fim do controle -->
+            <!-- Inicio das abas -->
+            <div class="tabs" id="tabs">
+              <div class="tab sobre showhide" id="sobre">
+                <div class="center d-flex align-items-center flex-column">
+                  <img src="img/user.png" alt="Candidato 5">
+                  <span class="nome">Candidato 10</span>
+                </div>
+                <dl class="row">
+                  <dt class="col-5">Nome</dt>
+                  <dd class="col-7">
+                    <p>Nome completo do candidato 10</p>
+                  </dd>
+
+                  <dt class="col-5">Data de nascimento</dt>
+                  <dd class="col-7">
+                    <p>12 de janeiro de 1900 (120 anos)</p>
+                  </dd>
+
+                  <dt class="col-5">Gênero</dt>
+                  <dd class="col-7">
+                    <p>Masculino</p>
+                  </dd>
+
+                  <dt class="col-5">Estado civil</dt>
+                  <dd class="col-7">
+                    <p>Casado(a)</p>
+                  </dd>
+
+                  <dt class="col-5">Ocupação</dt>
+                  <dd class="col-7">
+                    <p>Pianista</p>
+                  </dd>
+
+                  <dt class="col-5">Grau de instrução</dt>
+                  <dd class="col-7">
+                    <p>Superior Completo</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="tab scroll" id="projetos">
+                <span class="h4" style="margin-bottom: 1rem; display: inline-block;">Projetos</span>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Educação</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Turismo</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Drogas</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Meio ambiente</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Saúde</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="card-header">Segurança Pública</div>
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex consequatur, quo reprehenderit libero quos facere aliquid accusantium numquam tenetur.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="boasacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Boas Acoes</span class="h4">
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card dt dark-var mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-2">
+                      +15 pts
+                    </div>
+                    <div class="col-10">
+                      <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab scroll" id="masacoes">
+                <span class="h4 mb-3" style="display: inline-block;">Más Acoes</span class="h4">
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card dt dark-var mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-2">
+                        -15 pts
+                      </div>
+                      <div class="col-10">
+                        <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fim das abas -->
+          </div>
+        </section>
       </div>
     </div>
-  </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    console.log("Jquery carregado");
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
-    console.log("BootstrapJS carregado");
-  </script>
-  <script src="js/main.js">
-    console.log("MainJS carregado");
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/theme.js" defer></script>
+  <script src="js/main.js" async></script>
+  <script type="module" async>
+    // Cache
+    // Usado para salvar o tema do site
+    if (localStorage['siteTheme'] == undefined) {
+        localStorage['siteTheme'] = "white";
+    }
   </script>
 </body>
-
 </html>
