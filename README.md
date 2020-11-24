@@ -16,4 +16,4 @@ Interface onde o usuário terá acesso há um ranking de candidatos onde será m
 | ASESWEB (HTML, CSS, Bootstrap e JS)            	| 98.12% 	    |
 
 ### SASS
-Instale o SASS com `npm install -g sass` e depois use `sass --watch scss/:css/`
+Instale o SASS com `npm install -g sass` e depois use `sass --watch scss/:css/`.
