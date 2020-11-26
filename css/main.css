@@ -280,6 +280,9 @@ dl.row {
   border: 2px solid rgba(255, 255, 255, 0.8);
   object-fit: cover;
 }
+.sobre img.dt {
+  border-color: rgba(0, 0, 0, 0.6);
+}
 .sobre dl.row {
   max-width: 90%;
   margin: 0 auto;
