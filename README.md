@@ -11,7 +11,7 @@ Interface onde o usuário terá acesso há um ranking de candidatos onde será m
 ### Status
 | Teste                                           | Nota       	|
 |-----------------------------------------------	|-----------	|
-| PageSpeed Insights(Google)                   	  | 89         	|
+| PageSpeed Insights(Google)                   	  | 81         	|
 | ASESWEB (HTML)                                  | 100%      	|
 | ASESWEB (HTML, CSS, Bootstrap e JS)            	| 98.12% 	    |
 
