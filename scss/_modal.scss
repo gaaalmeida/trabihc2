@@ -1,0 +1,28 @@
+.modal-header.dt {
+    button.close {
+        color: white;
+    }
+}
+
+.modal-content {
+    input,
+    select,
+    textarea {
+        padding: .5rem 1rem;
+        height: 40px;
+    }
+    &.dt {
+        background-color: var(--aux-dt);
+        input,
+        select,
+        textarea {
+            background-color: var(--aux2-dt);
+            color: $primary-dark;
+            color: white;
+            &:focus {
+                background-color: var(--aux2-dt);
+                color: white;
+            }
+        }
+    }
+}
