@@ -3,21 +3,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
 // Custom variables
 $sidebar-padding: 1.25rem;
-
 $light-gray: #fafafa;
 $secondary-gray: #667285;
-$primary-dark:  #191B1C;
+$primary-dark: #191B1C;
 $white: #ffffff;
 $link-color: red !default;
 $primary: #007bff;
-
 body {
-  background-color: $white;
-  font-family: "Roboto", sans-serif;
+    background-color: $white;
+    font-family: "Roboto", sans-serif;
 }
 
 .badge {
-  vertical-align: middle !important;
+    vertical-align: middle !important;
 }
 
 // Custom
@@ -33,78 +31,4 @@ body {
 @import "card";
 @import "file";
 @import "form_modal";
-
-// Home
-section.row {
-  min-height: 33.33vh;
-  max-height: auto;
-  align-items: center;
-  padding: 2rem;
-  &#saibaemquem {
-    background-color: #8EEFE5;
-  }
-  &#melhores {
-    background-color: #D1F281;
-    .col {
-      text-align: left;
-    }
-  }
-  &#piores {
-    background-color: #E67C7C;
-    .col {
-      align-items: flex-end;
-      text-align: right;
-    }
-  }
-  p {
-    font-size: 1.125rem;
-  }
-  .container>.row>.col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 991px) {
-  section.row>.container>.row>.col>h1,
-  section.row>.container>.row>.col-md>h1 {
-    font-size: 1.7rem;
-  }
-  #mascote {
-    display: none;
-  }
-}
-
-@media (max-width: 758px) {
-  section.row>.container>.row>.col-md,
-  section.row>.container>.row>.col {
-    text-align: center !important;
-    align-items: center !important;
-  }
-  section.row {
-    &#saibaemquem .container .row .col p {
-      margin: 0;
-    }
-    &#melhores .container .row .col-md {
-      h1 {
-        margin-top: 1rem;
-      }
-      p {
-        margin: 0;
-      }
-    }
-    &#piores .container .row {
-      flex-direction: column-reverse;
-      .col-md {
-        h1 {
-          margin-top: 1rem;
-        }
-        p {
-          margin: 0;
-        }
-      }
-    }
-  }
-}
+@import "modal";

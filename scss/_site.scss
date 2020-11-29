@@ -1,38 +1,33 @@
 #pesquisa {
-  &.dt {
+    &.dt {
+        input {
+            background: var(--aux2-dt);
+            border-color: rgba($light-gray, .5);
+            color: $white;
+            &::placeholder {
+                color: #c4c4c4;
+            }
+        }
+        .input-group-append #pesquisarCandidato {
+            color: $white;
+            border-color: lighten($primary, 20%);
+        }
+    }
     input {
-      background: var(--aux2-dt);
-      border-color: rgba($light-gray, .5);
-      color: $white;
-
-      &::placeholder {
-        color: #c4c4c4;
-      }
+        padding: 1rem 1.5rem;
+        height: 64px;
+        background-color: $light-gray;
+        color: $primary-dark;
+        border-radius: 6px 0 0 6px;
+        &::placeholder {
+            color: rgba($primary-dark, .5);
+            font-family: "Roboto Condensed", sans-serif;
+            letter-spacing: 0.0109rem;
+        }
     }
-
     .input-group-append #pesquisarCandidato {
-      color: $white;
-      border-color: lighten($primary, 20%);
+        background-color: $primary;
+        color: $white;
+        border-color: darken($primary, 15%);
     }
-  }
-
-  input {
-    padding: 1rem 1.5rem;
-    height: 64px;
-    background-color: $light-gray;
-    color: $primary-dark;
-    border-radius: 6px 0 0 6px;
-
-    &::placeholder {
-      color: rgba($primary-dark, .5);
-      font-family: "Roboto Condensed", sans-serif;
-      letter-spacing: 0.0109rem;
-    }
-  }
-
-  .input-group-append #pesquisarCandidato {
-    background-color: $primary;
-    color: $white;
-    border-color: darken($primary, 15%);
-  }
 }
