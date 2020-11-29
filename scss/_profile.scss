@@ -66,8 +66,11 @@ dl.row {
             position: absolute;
             display: flex;
             width: fit-content;
-            padding: .4rem .6rem;
+            padding: .2rem .3rem;
             border-radius: 6px;
+            li {
+                font-size: .85rem;
+            }
             a {
                 font-size: 1rem;
                 font-weight: 500;
@@ -139,6 +142,9 @@ dl.row {
 }
 
 @media (max-width: 992px) {
+    .tab-pane {
+        margin-top: 4rem !important;
+    }
     #col-5 {
         flex: 1 !important;
         max-width: 100% !important;

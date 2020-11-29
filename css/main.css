@@ -237,8 +237,11 @@ dl.row {
   position: absolute;
   display: flex;
   width: fit-content;
-  padding: 0.4rem 0.6rem;
+  padding: 0.2rem 0.3rem;
   border-radius: 6px;
+}
+.profile .tab-control-container .tab-control li {
+  font-size: 0.85rem;
 }
 .profile .tab-control-container .tab-control a {
   font-size: 1rem;
@@ -304,6 +307,10 @@ dl.row {
 }
 
 @media (max-width: 992px) {
+  .tab-pane {
+    margin-top: 4rem !important;
+  }
+
   #col-5 {
     flex: 1 !important;
     max-width: 100% !important;
