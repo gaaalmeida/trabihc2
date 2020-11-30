@@ -240,9 +240,6 @@ dl.row {
   padding: 0.2rem 0.3rem;
   border-radius: 6px;
 }
-.profile .tab-control-container .tab-control li {
-  font-size: 0.85rem;
-}
 .profile .tab-control-container .tab-control a {
   font-size: 1rem;
   font-weight: 500;
@@ -388,6 +385,12 @@ dl.row {
   .sobre {
     overflow-y: auto;
     max-height: 55vh;
+  }
+}
+@media (max-width: 420px) {
+  .profile .tab-control-container .tab-control li a {
+    font-size: 0.85rem;
+    padding: 8px;
   }
 }
 #pesquisa.dt input {
